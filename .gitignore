@@ -1,0 +1,16 @@
+# VS Code settings & workspace files
+.vscode/
+*.code-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Log files
+*.log
+
+# Temporary / Scratch files
+*.tmp
+*.bak
+cv_extracted.txt
