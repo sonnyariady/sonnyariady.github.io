@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Expense Tracker Case Study | Sonny Ariady</title>
+  <meta name="description" content="Case Study: Monthly Expense Tracker - From a .NET/C# background to React + Python through vibe coding and AI-assisted development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Sonny Ariady</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html" class="btn-back">&larr; Back to Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    
+    <!-- Hero Header -->
+    <header class="case-study-hero">
+      <span class="case-study-badge">Portfolio Case Study &bull; AI-Assisted Fullstack</span>
+      <h1>Monthly Expense Tracker</h1>
+      <p class="case-study-subtitle">
+        From a .NET/C# background to React + Python through vibe coding and AI-assisted development
+      </p>
+
+      <div class="tag-cloud" style="margin-bottom: 1.5rem;">
+        <span class="tag highlight">React 18</span>
+        <span class="tag highlight">Python</span>
+        <span class="tag highlight">FastAPI</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Vite</span>
+        <span class="tag">Recharts</span>
+        <span class="tag highlight">AI-Assisted</span>
+      </div>
+
+      <div class="case-study-experiment-box">
+        <h4>The Experiment</h4>
+        <p>
+          Can a developer whose primary stack is .NET/C# turn a simple household-finance idea into a working full-stack product using prompting, iterative review, testing, and engineering judgment?
+        </p>
+      </div>
+    </header>
+
+    <!-- Section 01: Project Overview -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">01. Project Overview</h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem;">
+        The idea was intentionally simple: build a useful web application for recording, organizing, and analyzing monthly household expenses &mdash; then use the project to test a new development workflow rather than merely learn syntax in isolation.
+      </p>
+
+      <div class="workflow-steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>Problem</h4>
+          <p>Expense records are often fragmented across notes, chat messages, and spreadsheets. The application consolidates transactions into a searchable monthly view.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>Product Goal</h4>
+          <p>Create a usable dashboard with transaction management, monthly KPIs, visual analysis, filtering, and report export.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>Learning Goal</h4>
+          <p>Explore React and Python while applying familiar engineering concepts from .NET/C#: APIs, validation, persistence, and separation of concerns.</p>
+        </div>
+      </div>
+
+      <div class="about-card" style="margin-top: 2rem;">
+        <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">What the application actually does</h3>
+        <ul style="padding-left: 1.2rem; color: #cbd5e1; line-height: 1.8;">
+          <li><strong>Transaction management:</strong> Add, edit, delete, and review household expenses with dates, categories, types, notes, and IDR amounts.</li>
+          <li><strong>Monthly analytics:</strong> Calculate total spending, transaction count, remaining budget, and estimated daily average.</li>
+          <li><strong>Visual reporting:</strong> Display category distribution through a donut chart and expense-type distribution through a bar chart.</li>
+          <li><strong>Finding and exporting data:</strong> Filter by month, year, category, or type; search by keyword; export current result set to CSV.</li>
+          <li><strong>Static-demo resilience:</strong> Use FastAPI + SQLite backend when available, with an automatic browser LocalStorage fallback for a static public demo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 02: From Idea to Realization -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">02. From Idea to Realization</h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem;">
+        AI generated code. Engineering judgment shaped the product. This project was an experiment in directing AI effectively, checking its output, and moving from an ambiguous idea to a coherent application.
+      </p>
+
+      <div class="workflow-steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h4>Frame the idea</h4>
+          <p>Define the user problem, essential screens, transaction fields, and useful monthly insights.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h4>Prompt the solution</h4>
+          <p>Ask Antigravity AI to propose and generate a React frontend and Python FastAPI backend.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h4>Inspect the result</h4>
+          <p>Review project structure, API contracts, state flow, database models, and generated business logic.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <h4>Test and iterate</h4>
+          <p>Run the application, identify errors or awkward behavior, refine prompts, and adjust implementation.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">05</div>
+          <h4>Package the outcome</h4>
+          <p>Document features, deployment options, limitations, and the AI-assisted development approach.</p>
+        </div>
+      </div>
+
+      <div class="principle-banner">
+        <h4>Working Principle</h4>
+        <p>
+          Prompting accelerated production, but did not remove accountability. The developer still had to decide what should exist, recognize whether the generated solution was sensible, test it, and explain how it works.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 03: Technical Implementation -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">03. Technical Implementation</h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem;">
+        A lightweight architecture designed for both full-stack use and static public demonstration.
+      </p>
+
+      <div class="about-card" style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">Architecture Overview</h3>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: space-around; padding: 1rem 0; text-align: center;">
+          <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid var(--primary-light); padding: 1.2rem; border-radius: 10px; width: 220px;">
+            <strong style="color: #fff; display: block; font-size: 1.1rem; margin-bottom: 0.3rem;">React + Vite</strong>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Dashboard, forms, filters, charts</span>
+          </div>
+          <div style="color: var(--primary-light); font-size: 1.5rem;">&rarr;</div>
+          <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid var(--accent-purple); padding: 1.2rem; border-radius: 10px; width: 220px;">
+            <strong style="color: #fff; display: block; font-size: 1.1rem; margin-bottom: 0.3rem;">FastAPI</strong>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">REST endpoints and validation</span>
+          </div>
+          <div style="color: var(--primary-light); font-size: 1.5rem;">&rarr;</div>
+          <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid var(--accent-cyan); padding: 1.2rem; border-radius: 10px; width: 220px;">
+            <strong style="color: #fff; display: block; font-size: 1.1rem; margin-bottom: 0.3rem;">SQLite</strong>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Persistent transaction storage</span>
+          </div>
+        </div>
+
+        <div style="background: rgba(234, 179, 8, 0.1); border: 1px dashed rgba(234, 179, 8, 0.4); border-radius: 8px; padding: 1rem; margin-top: 1.5rem; color: #fef08a; font-size: 0.9rem;">
+          <strong>Fallback Path for Static Hosting:</strong> When the backend is unavailable, the frontend automatically switches to browser LocalStorage so visitors on static public hosting can still test CRUD operations, filtering, and analytics.
+        </div>
+      </div>
+
+      <h3 style="color: #fff; margin-bottom: 1rem;">Technology Choices</h3>
+      <div class="data-table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Technologies Used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Frontend</strong></td>
+              <td>React 18, Vite, custom CSS, Lucide React, Recharts</td>
+            </tr>
+            <tr>
+              <td><strong>Backend</strong></td>
+              <td>Python, FastAPI, Pydantic v2, SQLAlchemy, Uvicorn</td>
+            </tr>
+            <tr>
+              <td><strong>Data</strong></td>
+              <td>SQLite for local persistence; LocalStorage fallback for static demos</td>
+            </tr>
+            <tr>
+              <td><strong>API</strong></td>
+              <td>CRUD endpoints, filtered queries, master data, and monthly summary aggregation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="color: #fff; margin-top: 2rem; margin-bottom: 1rem;">Engineering Concepts Transferred from .NET/C#</h3>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">API Contracts</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Request and response schemas remain explicit with Pydantic v2 models even though the programming language changed.</p>
+        </div>
+        <div class="skill-category">
+          <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">Layered Responsibilities</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">UI components, API service calls, validation schemas, database models, and persistence layers are cleanly separated.</p>
+        </div>
+        <div class="skill-category">
+          <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">Business Rules</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Monthly filtering, aggregation, budget progress calculations, and input validation still require deliberate logic.</p>
+        </div>
+        <div class="skill-category">
+          <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">Operational Thinking</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">CORS policies, deployment modes, seed demo data, and automatic failure fallbacks were designed as product concerns.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 04 & 05: Application Walkthrough & Features -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">04. Application Walkthrough &amp; Features</h2>
+      
+      <div class="workflow-steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>Choose Month &amp; Year</h4>
+          <p>Switch the reporting period instantly from the top toolbar dropdown menu.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>Review Monthly KPIs</h4>
+          <p>Monitor total spending, budget remaining, daily average spending, and transaction count at a glance.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>Interpret Charts</h4>
+          <p>Compare spending breakdown by category (Donut chart) and expense type (Bar chart).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h4>Manage &amp; Export Data</h4>
+          <p>Add new transactions, edit existing records, delete entries, or export filtered period data to CSV.</p>
+        </div>
+      </div>
+
+      <div class="about-card" style="margin-top: 2rem;">
+        <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">Transaction Management &amp; Data Entry Flow</h3>
+        <p style="color: #cbd5e1; margin-bottom: 1rem;">
+          When clicking <strong>+ Tambah Pengeluaran</strong>, a modern modal appears prompting for Title, IDR Amount, Date, Category (e.g. <em>Makanan &amp; Bahan Pokok, Tagihan &amp; Utilitas, TopUp E-Wallet, Transportasi &amp; Bensin</em>), Type (<em>Belanja, Tagihan, Jajan, Ongkos, Topup</em>), and optional notes.
+        </p>
+        <p style="color: #cbd5e1;">
+          A single save action updates the SQLite database or LocalStorage, instantly updating the KPIs, donut category chart, bar expense-type chart, and transaction list in real time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 07: Role, Lessons & Next Steps -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">05. Role, Lessons &amp; Next Steps</h2>
+
+      <div class="skills-grid" style="margin-bottom: 2rem;">
+        <div class="skill-category">
+          <h4 style="color: #fff; margin-bottom: 0.5rem;">Product Direction</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Defined the application goal, expected user journey, transaction model, and reporting features.</p>
+        </div>
+        <div class="skill-category">
+          <h4 style="color: #fff; margin-bottom: 0.5rem;">Prompt Direction</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Translated ideas into instructions and iteratively refined the AI-generated codebase.</p>
+        </div>
+        <div class="skill-category">
+          <h4 style="color: #fff; margin-bottom: 0.5rem;">Technical Review</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Examined generated React components, FastAPI endpoints, data models, and calculation logic.</p>
+        </div>
+        <div class="skill-category">
+          <h4 style="color: #fff; margin-bottom: 0.5rem;">Validation &amp; Testing</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Executed the application, verified workflows, fixed edge cases, and validated fallback behavior.</p>
+        </div>
+      </div>
+
+      <div class="about-card" style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">Key Lessons Learned</h3>
+        <ul style="padding-left: 1.2rem; color: #cbd5e1; line-height: 1.8;">
+          <li><strong>Strong requirements produce better AI output:</strong> Precise specifications yield clean architecture.</li>
+          <li><strong>Familiar architecture concepts transfer:</strong> Separation of concerns, validation, and API contracts apply regardless of language.</li>
+          <li><strong>Generated code still requires review:</strong> Engineering judgment is essential to inspect edge cases and security.</li>
+          <li><strong>A working demo is invaluable:</strong> Live interactive prototypes communicate value better than static prompts.</li>
+          <li><strong>Transparency builds credibility:</strong> Honesty about AI collaboration highlights real engineering leadership.</li>
+        </ul>
+      </div>
+
+      <div class="about-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--glass-border-hover);">
+        <h3 style="color: #fff; margin-bottom: 1rem;">Portfolio Positioning</h3>
+        <p style="color: var(--text-muted); line-height: 1.7; margin: 0;">
+          <strong>Monthly Expense Tracker</strong> &mdash; an AI-assisted full-stack experiment by a .NET/C# developer exploring React and Python. The project demonstrates the ability to turn an idea into a functioning product, transfer engineering principles across stacks, and use AI as a development accelerator without misrepresenting authorship.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="index.html" class="btn-back" style="font-size: 1.05rem; padding: 0.75rem 1.8rem;">
+        &larr; Back to Portfolio Index
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2026 Sonny Ariady &mdash; Senior .NET Developer &amp; Technical Consultant. Hosted on GitHub Pages.
+  </footer>
+
+</body>
+</html>

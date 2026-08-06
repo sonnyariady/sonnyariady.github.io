@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CI/CD GitHub Actions Portfolio | Sonny Ariady</title>
+  <meta name="description" content="CI/CD Portfolio: Automated Deployment for .NET 9 Applications on Private Ubuntu Infrastructure using GitHub Actions and Docker Compose.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Sonny Ariady</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html" class="btn-back">&larr; Back to Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    
+    <!-- Hero Header -->
+    <header class="case-study-hero">
+      <span class="case-study-badge">Portfolio Case Study &bull; DevOps &amp; Automation</span>
+      <h1>CI/CD Portfolio - GitHub Actions</h1>
+      <p class="case-study-subtitle">
+        Automated Deployment for .NET 9 Applications on Private Ubuntu Development Infrastructure
+      </p>
+
+      <div class="tag-cloud" style="margin-bottom: 1.5rem;">
+        <span class="tag highlight">GitHub Actions</span>
+        <span class="tag highlight">.NET 9.0</span>
+        <span class="tag highlight">Docker Compose</span>
+        <span class="tag">Linux Ubuntu</span>
+        <span class="tag">SSH Authentication</span>
+        <span class="tag">DevOps Automation</span>
+      </div>
+
+      <div class="case-study-experiment-box">
+        <h4>Overview</h4>
+        <p>
+          This portfolio summarizes the implementation of an automated CI/CD pipeline using GitHub Actions for a .NET 9 application. The deployment target is a Linux Ubuntu development server hosted on the organization's internal cloud infrastructure (non-AWS/Azure), accessible through a public IP over SSH.
+        </p>
+      </div>
+    </header>
+
+    <!-- Architecture Diagram -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">Deployment Architecture</h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem;">
+        Automated pipeline flow from developer commit to live Docker container execution:
+      </p>
+
+      <div class="about-card" style="text-align: center; padding: 2rem;">
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; justify-content: center; font-size: 0.95rem;">
+          <span style="background: rgba(30, 41, 59, 0.9); border: 1px solid var(--glass-border); padding: 0.6rem 1rem; border-radius: 8px; color: #fff;">Developer</span>
+          <span style="color: var(--accent-cyan); font-weight: bold;">&rarr;</span>
+          <span style="background: rgba(30, 41, 59, 0.9); border: 1px solid var(--glass-border); padding: 0.6rem 1rem; border-radius: 8px; color: #fff;">Pull Request</span>
+          <span style="color: var(--accent-cyan); font-weight: bold;">&rarr;</span>
+          <span style="background: rgba(30, 41, 59, 0.9); border: 1px solid var(--glass-border); padding: 0.6rem 1rem; border-radius: 8px; color: #fff;">Merge</span>
+          <span style="color: var(--accent-cyan); font-weight: bold;">&rarr;</span>
+          <span style="background: rgba(59, 130, 246, 0.2); border: 1px solid var(--primary-light); padding: 0.6rem 1rem; border-radius: 8px; color: #fff; font-weight: 600;">GitHub Actions</span>
+          <span style="color: var(--accent-cyan); font-weight: bold;">&rarr;</span>
+          <span style="background: rgba(30, 41, 59, 0.9); border: 1px solid var(--glass-border); padding: 0.6rem 1rem; border-radius: 8px; color: #fff;">SSH Auth</span>
+          <span style="color: var(--accent-cyan); font-weight: bold;">&rarr;</span>
+          <span style="background: rgba(30, 41, 59, 0.9); border: 1px solid var(--glass-border); padding: 0.6rem 1rem; border-radius: 8px; color: #fff;">Ubuntu Server</span>
+          <span style="color: var(--accent-cyan); font-weight: bold;">&rarr;</span>
+          <span style="background: rgba(30, 41, 59, 0.9); border: 1px solid var(--glass-border); padding: 0.6rem 1rem; border-radius: 8px; color: #fff;">Execute deploy.sh</span>
+          <span style="color: var(--accent-cyan); font-weight: bold;">&rarr;</span>
+          <span style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; padding: 0.6rem 1rem; border-radius: 8px; color: #10b981; font-weight: 600;">Application Updated</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Responsibilities Matrix -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">Key Responsibilities Matrix</h2>
+
+      <div class="data-table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width: 220px;">Component</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Platform</strong></td>
+              <td>GitHub Actions Workflow Engine</td>
+            </tr>
+            <tr>
+              <td><strong>Language &amp; Stack</strong></td>
+              <td>.NET 9.0 Console / Web Application</td>
+            </tr>
+            <tr>
+              <td><strong>Infrastructure</strong></td>
+              <td>Private Ubuntu Linux Development Server (Internal Cloud Infrastructure)</td>
+            </tr>
+            <tr>
+              <td><strong>Authentication</strong></td>
+              <td>SSH Public/Private Key pair authentication</td>
+            </tr>
+            <tr>
+              <td><strong>Deployment Trigger</strong></td>
+              <td>Automatic release execution after every approved pull request merge</td>
+            </tr>
+            <tr>
+              <td><strong>Container Runtime</strong></td>
+              <td>Docker &amp; Docker Compose</td>
+            </tr>
+            <tr>
+              <td><strong>Deployment Script</strong></td>
+              <td>Automated <code>deploy.sh</code> execution script</td>
+            </tr>
+            <tr>
+              <td><strong>AI Assistance</strong></td>
+              <td>Standard GitHub Actions YAML workflow generated with AI and customized for target environment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- GitHub Repository Secrets -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">GitHub Repository Secrets</h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem;">
+        The deployment workflow stores sensitive credentials securely using GitHub Actions Repository Secrets without exposing credentials in source control:
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3 style="color: var(--accent-cyan); margin-bottom: 0.75rem;">Configured Secrets</h3>
+          <div class="tag-cloud">
+            <span class="tag highlight">DEPLOY_HOST</span>
+            <span class="tag highlight">DEPLOY_PORT</span>
+            <span class="tag highlight">DEPLOY_USER</span>
+            <span class="tag highlight">DEPLOY_SSH_KEY</span>
+            <span class="tag highlight">SUDO_PASSWORD</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 style="color: var(--primary-light); margin-bottom: 0.75rem;">Security Governance</h3>
+          <p style="color: #cbd5e1; font-size: 0.95rem; margin: 0;">
+            All SSH credentials, IP addresses, ports, and sudo passphrases are injected into the runner dynamically at runtime, guaranteeing zero credential leaks in git history.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deployment Flow -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">Deployment Flow Steps</h2>
+
+      <div class="workflow-steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>Push &amp; PR</h4>
+          <p>Developer pushes code changes and creates a Pull Request.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>Code Review &amp; Merge</h4>
+          <p>Changes are reviewed and merged into the target deployment branch.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>Trigger Pipeline</h4>
+          <p>GitHub Actions workflow is triggered automatically upon branch update.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h4>SSH Authentication</h4>
+          <p>Workflow authenticates securely to the Ubuntu server using configured SSH keys.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">5</div>
+          <h4>Execute Script</h4>
+          <p>The workflow executes the remote <code>deploy.sh</code> deployment script on the Ubuntu server.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">6</div>
+          <h4>Docker Compose</h4>
+          <p>Script executes Docker Compose rebuilds, prunes unused resources, and restarts updated containers.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">7</div>
+          <h4>Completion</h4>
+          <p>Deployment finishes cleanly without requiring manual SSH terminal logins or manual Docker commands.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Value & Authorship -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">Business Value &amp; Authorship</h2>
+
+      <div class="principle-banner" style="margin-bottom: 2rem;">
+        <h4>Business Impact</h4>
+        <p>
+          The implementation eliminated repetitive manual deployment activities, improved deployment consistency, reduced human error, and enabled faster delivery after every approved merge. Existing Docker Compose scripts created by another team member were reused, while GitHub Actions orchestrated the deployment lifecycle automatically.
+        </p>
+      </div>
+
+      <div class="about-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--glass-border-hover);">
+        <h4 style="color: var(--primary-light); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; margin-bottom: 0.4rem;">Prepared By</h4>
+        <h3 style="color: #fff; font-size: 1.25rem;">Sonny Ariady</h3>
+        <p style="color: var(--text-muted); margin: 0;">Technical Consultant / Senior .NET Developer</p>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="index.html" class="btn-back" style="font-size: 1.05rem; padding: 0.75rem 1.8rem;">
+        &larr; Back to Portfolio Index
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2026 Sonny Ariady &mdash; Senior .NET Developer &amp; Technical Consultant. Hosted on GitHub Pages.
+  </footer>
+
+</body>
+</html>
