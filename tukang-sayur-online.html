@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tukang Sayur Online (Web & Mobile) | Sonny Ariady Portfolio</title>
+  <meta name="description" content="Tukang Sayur Online Case Study: Hyper-local vegetable commerce platform built with .NET 9, Blazor & MAUI Hybrid, MudBlazor 7.4.0, and PostgreSQL. Features real-time stock, direct sales, and geo-discovery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="lang-id">
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Sonny Ariady</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="https://github.com/sonnyariady/TukangSayurOnline" target="_blank" rel="noopener" class="btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repository
+        </a></li>
+        <li><a href="index.html" class="btn-back">&larr; Back to Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- Case Study Hero Header -->
+    <header class="case-study-hero" style="text-align: center; margin-bottom: 3.5rem;">
+      <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap;">
+        <span class="emerald-badge">Case Study &bull; .NET 9 MAUI Hybrid</span>
+        <span class="emerald-badge" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4; border-color: rgba(6, 182, 212, 0.3);">Cross-Platform Web & Mobile</span>
+      </div>
+
+      <h1 class="gradient-emerald-text" style="font-size: 2.75rem; margin-bottom: 0.75rem;">Tukang Sayur Online</h1>
+      
+      <p class="case-study-subtitle" data-lang="id" style="font-size: 1.2rem; color: #cbd5e1; max-width: 800px; margin: 0 auto 1.5rem auto;">
+        Platform ekosistem perdagangan sayur hiper-lokal real-time untuk Admin, Tukang Sayur (Vendor), dan Pelanggan berbasis <strong>.NET 9, Blazor &amp; MAUI Hybrid, MudBlazor 7.4.0, dan PostgreSQL</strong>.
+      </p>
+      <p class="case-study-subtitle" data-lang="en" style="font-size: 1.2rem; color: #cbd5e1; max-width: 800px; margin: 0 auto 1.5rem auto;">
+        Real-time hyper-local vegetable commerce ecosystem platform for Admins, Vendors (Tukang Sayur), and Customers powered by <strong>.NET 9, Blazor &amp; MAUI Hybrid, MudBlazor 7.4.0, and PostgreSQL</strong>.
+      </p>
+
+      <div class="tag-cloud" style="justify-content: center; margin-bottom: 1.5rem;">
+        <span class="tag highlight" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">.NET 9</span>
+        <span class="tag highlight" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">MAUI Hybrid</span>
+        <span class="tag highlight">Blazor Server &amp; Web</span>
+        <span class="tag">MudBlazor 7.4.0</span>
+        <span class="tag">ASP.NET Core API</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Geo-Location Discovery</span>
+        <span class="tag">Real-Time Inventory</span>
+      </div>
+
+      <!-- Language Switcher Bar -->
+      <div class="lang-switcher-container">
+        <button class="lang-btn active" id="btn-lang-id" onclick="setLanguage('id')">
+          🇮🇩 Bahasa Indonesia
+        </button>
+        <button class="lang-btn" id="btn-lang-en" onclick="setLanguage('en')">
+          🇬🇧 English Manual
+        </button>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <a href="https://github.com/sonnyariady/TukangSayurOnline" target="_blank" rel="noopener" class="btn-cta" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View Source Code on GitHub &rarr;
+        </a>
+      </div>
+    </header>
+
+    <!-- Cover Banner -->
+    <div style="margin-bottom: 4rem; text-align: center;">
+      <div class="web-frame-card" style="max-width: 1000px; margin: 0 auto;">
+        <div class="web-frame-header">
+          <span class="web-dot red"></span>
+          <span class="web-dot yellow"></span>
+          <span class="web-dot green"></span>
+          <span class="web-frame-title">Tukang Sayur Online - Unified Operational Workspace</span>
+        </div>
+        <div class="web-img-container" onclick="openLightbox('assets/tukangsayur/web_cover_header.jpg')">
+          <img src="assets/tukangsayur/web_cover_header.jpg" alt="Tukang Sayur Online Cover Header" class="web-frame-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 01: Executive Summary -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span data-lang="id">01. Ringkasan Eksekutif &amp; Tujuan Utama</span>
+        <span data-lang="en">01. Executive Summary &amp; Core Objectives</span>
+      </h2>
+
+      <div class="about-card" data-lang="id">
+        <p>
+          <strong>Tukang Sayur Online</strong> adalah platform ekosistem perdagangan sayur hiper-lokal real-time yang menghubungkan pedagang sayur/lapak (Tukang Sayur), Administrator, dan pembeli rumah tangga (Pelanggan). Sistem memodernisasi proses penjualan tradisional melalui visibilitas stok berbasis lokasi, pencatatan restock dan penjualan, status toko Online/Offline, analitik produk terlaris, serta pemantauan stok habis.
+        </p>
+        <div class="principle-banner">
+          <h4>Tujuan Utama Sistem</h4>
+          <p>Membuat stok dan ketersediaan pedagang terlihat oleh pelanggan terdekat, membantu pedagang mencatat arus stok dan penjualan langsung, serta memberi Admin visibilitas terpusat terhadap katalog master, produk terlaris, dan pemantauan barang kosong.</p>
+        </div>
+      </div>
+
+      <div class="about-card" data-lang="en">
+        <p>
+          <strong>Tukang Sayur Online</strong> is a real-time hyper-local vegetable commerce platform connecting traditional vegetable vendors (Tukang Sayur), Administrators, and residential Customers. It modernizes traditional selling workflows through location-aware stock visibility, restock and sales recording, Online/Offline shop status, best-selling product analytics, and real-time out-of-stock monitoring.
+        </p>
+        <div class="principle-banner">
+          <h4>Primary System Objective</h4>
+          <p>Make vendor inventory and availability visible to nearby customers, help vendors record stock movement and direct sales, and give Administrators centralized visibility into the master catalog, top-selling products, and out-of-stock items.</p>
+        </div>
+      </div>
+
+      <div class="workflow-steps-grid" style="margin-top: 2rem;">
+        <div class="step-card">
+          <div class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">1</div>
+          <h4 data-lang="id">Master Catalog &amp; Analytics</h4>
+          <h4 data-lang="en">Master Catalog &amp; Analytics</h4>
+          <p data-lang="id">Admin mengelola katalog master produk global, menetapkan harga acuan default, memantau analitik produk terlaris, dan melacak item yang habis.</p>
+          <p data-lang="en">Admin manages global master product catalog, sets default reference prices, monitors best-seller analytics, and tracks out-of-stock items.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">2</div>
+          <h4 data-lang="id">Vendor Inventory &amp; POS</h4>
+          <h4 data-lang="en">Vendor Inventory &amp; POS</h4>
+          <p data-lang="id">Vendor mencatat restock dari pasar induk, mengelola stok lokal &amp; harga jual, melakukan pencatatan penjualan langsung, serta mengatur status toko Online/Offline.</p>
+          <p data-lang="en">Vendor records restock purchases, maintains local inventory &amp; prices, inputs direct sales, and toggles shop Online/Offline status.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">3</div>
+          <h4 data-lang="id">Customer Geo Discovery</h4>
+          <h4 data-lang="en">Customer Geo Discovery</h4>
+          <p data-lang="id">Pelanggan menemukan pedagang terdekat yang Online dan memiliki ready stock, melihat harga/jarak, dan mengonfirmasi transaksi pembelian.</p>
+          <p data-lang="en">Customers discover nearby Online vendors with available stock, check prices/distances, and confirm purchase transactions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 02: User Roles & Access Permissions Matrix -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span data-lang="id">02. Peran Pengguna &amp; Matriks Hak Akses</span>
+        <span data-lang="en">02. User Roles &amp; Access Permission Matrix</span>
+      </h2>
+
+      <div class="data-table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Fitur / Modul</th>
+              <th>Admin</th>
+              <th>Tukang Sayur (Vendor)</th>
+              <th>Pelanggan (Customer)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pendaftaran &amp; Autentikasi</strong></td>
+              <td>Pra-konfigurasi / Pre-configured</td>
+              <td>Registrasi mandiri / Self-registration</td>
+              <td>Registrasi mandiri / Self-registration</td>
+            </tr>
+            <tr>
+              <td><strong>Katalog Master Produk</strong></td>
+              <td>Buat / Edit / Hapus (CRUD)</td>
+              <td>Lihat &amp; Pilih dari Master</td>
+              <td>Lihat Katalog</td>
+            </tr>
+            <tr>
+              <td><strong>Restock Stok Lokal</strong></td>
+              <td>-</td>
+              <td>Ya (Input Restock)</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>Penjualan Langsung / POS</strong></td>
+              <td>-</td>
+              <td>Ya (Catat Penjualan)</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>Status Online / Offline</strong></td>
+              <td>-</td>
+              <td>Ya (Toggle Sakelar Status)</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>Pencarian Vendor Terdekat</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>Ya (Berdasarkan Lokasi/Jarak)</td>
+            </tr>
+            <tr>
+              <td><strong>Pembelian Produk Online</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>Ya (Konfirmasi Transaksi)</td>
+            </tr>
+            <tr>
+              <td><strong>Analitik Produk Terlaris</strong></td>
+              <td>Ya (Global Analytics)</td>
+              <td>Terlihat melalui transaksi</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>Monitoring Stok Kosong</strong></td>
+              <td>Terpusat (Centralized Out-of-Stock)</td>
+              <td>Indikator per barang (Stok Habis)</td>
+              <td>Stok 0 disembunyikan</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 03: Mobile Application Documentation & Gallery -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span data-lang="id">03. Dokumentasi Aplikasi Mobile (Bilingual User Guide)</span>
+        <span data-lang="en">03. Mobile Application Documentation (Bilingual Gallery)</span>
+      </h2>
+
+      <p data-lang="id" style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Berikut adalah 12 layar utama aplikasi mobile yang mendukung alur kerja Admin, Pelanggan, dan Tukang Sayur (Vendor) dengan integrasi Blazor &amp; .NET MAUI Hybrid:
+      </p>
+      <p data-lang="en" style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Here are the 12 primary mobile screens supporting Admin, Customer, and Tukang Sayur (Vendor) workflows powered by Blazor &amp; .NET MAUI Hybrid:
+      </p>
+
+      <div class="mobile-gallery-grid">
+
+        <!-- Mobile Screen 1: Splash -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">01</span>
+            <span class="mobile-screen-title">Splash Screen</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_01_splash.jpg')">
+            <img src="assets/tukangsayur/mobile_01_splash.jpg" alt="Splash Screen Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Menampilkan identitas Tukang Sayur Online saat aplikasi mobile melakukan inisialisasi.</li>
+              <li>Tampilan awal sebelum proses autentikasi atau pemulihan sesi pengguna.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Displays the Tukang Sayur Online brand while the mobile application initializes.</li>
+              <li>Acts as the first visual state before authentication or session restoration.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 2: Login -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">02</span>
+            <span class="mobile-screen-title">Login &amp; Role Access</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_02_login.jpg')">
+            <img src="assets/tukangsayur/mobile_02_login.jpg" alt="Login Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Pengguna masuk menggunakan email dan password.</li>
+              <li>Shortcut peran Admin, Tukang Sayur, dan Pelanggan tersedia untuk demo.</li>
+              <li>Pengguna baru dapat menuju form registrasi.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Users sign in with email and password.</li>
+              <li>Role shortcuts for Admin, Tukang Sayur, and Customer are available in demo mode.</li>
+              <li>New users can navigate to account registration.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 3: Admin Catalog -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">03</span>
+            <span class="mobile-screen-title">Admin - Master Catalog</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_03_admin_master.jpg')">
+            <img src="assets/tukangsayur/mobile_03_admin_master.jpg" alt="Admin Master Catalog Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Menampilkan katalog produk master yang digunakan di seluruh platform.</li>
+              <li>Pencarian dan filter kategori membantu admin menemukan produk.</li>
+              <li>Menampilkan nama, kategori, harga acuan, dan kontrol aksi.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Lists master catalog products used throughout the platform.</li>
+              <li>Search and category filters help administrator locate products.</li>
+              <li>Shows name, category, default price, and action controls.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 4: Admin Add Product -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">04</span>
+            <span class="mobile-screen-title">Admin - Add Product</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_04_admin_add_product.jpg')">
+            <img src="assets/tukangsayur/mobile_04_admin_add_product.jpg" alt="Admin Add Product Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Form Tambah Barang Baru dari dashboard Admin.</li>
+              <li>Input nama barang, kategori, satuan (kg, ikat, bungkus), harga acuan, URL gambar.</li>
+              <li>Menambahkan barang ke katalog master global.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Opens Tambah Barang Baru form from Admin dashboard.</li>
+              <li>Inputs product name, category, unit, default price, image URL, and short description.</li>
+              <li>Adds product to the global master catalog upon saving.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 5: Admin Analytics -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">05</span>
+            <span class="mobile-screen-title">Admin - Best-Seller Analytics</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_05_admin_analytics.jpg')">
+            <img src="assets/tukangsayur/mobile_05_admin_analytics.jpg" alt="Admin Analytics Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Tab Produk Terlaris memberi peringkat produk berdasarkan kuantitas &amp; omzet.</li>
+              <li>Membantu Admin mengidentifikasi komoditas dengan permintaan tinggi.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Ranks products using recorded sales quantity and revenue.</li>
+              <li>Helps administrator identify high-demand commodities across vendors.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 6: Admin Out of Stock -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">06</span>
+            <span class="mobile-screen-title">Admin - Out of Stock</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_06_admin_out_of_stock.jpg')">
+            <img src="assets/tukangsayur/mobile_06_admin_out_of_stock.jpg" alt="Admin Out of Stock Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Monitoring barang kosong yang stok vendor-nya telah mencapai nol.</li>
+              <li>Menampilkan toko, pemilik, produk, dan status stok.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Lists items whose vendor inventory has reached zero.</li>
+              <li>Shows shop name, vendor owner, product, category, and status.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 7: Customer Discovery -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">07</span>
+            <span class="mobile-screen-title">Customer - Discovery</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_07_customer_discovery.jpg')">
+            <img src="assets/tukangsayur/mobile_07_customer_discovery.jpg" alt="Customer Discovery Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Menampilkan lokasi saat ini dan pencarian produk terdekat.</li>
+              <li>Hanya menampilkan produk ready stock dari pedagang yang Online.</li>
+              <li>Kartu produk menampilkan gambar, nama, harga, toko, dan jarak.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Displays customer location and nearby search controls.</li>
+              <li>Only presents nearby products with available stock from active vendors.</li>
+              <li>Product cards show image, name, price, vendor identity, and distance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 8: Customer Purchase -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">08</span>
+            <span class="mobile-screen-title">Customer - Purchase</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_08_customer_purchase.jpg')">
+            <img src="assets/tukangsayur/mobile_08_customer_purchase.jpg" alt="Customer Purchase Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Tombol Temui &amp; Beli Langsung membuka dialog transaksi.</li>
+              <li>Pelanggan mengisi jumlah dan alamat pengantaran / titik temu.</li>
+              <li>Mengonfirmasi total pembayaran dan mengurangi stok secara real-time.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Opens purchase transaction dialog upon selecting Temui &amp; Beli.</li>
+              <li>Customer specifies quantity and delivery address or meeting point.</li>
+              <li>Summarizes total payment and deducts vendor stock upon confirmation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 9: Vendor Dashboard -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">09</span>
+            <span class="mobile-screen-title">Vendor - Dashboard</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_09_vendor_dashboard.jpg')">
+            <img src="assets/tukangsayur/mobile_09_vendor_dashboard.jpg" alt="Vendor Dashboard Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Dashboard operasional pedagang dengan sakelar Status Online/Offline.</li>
+              <li>Aksi cepat Input Stok Masuk (Restock) dan Catat Penjualan Langsung.</li>
+              <li>Kartu ringkasan saldo dompet, total income, pengeluaran restock, dan total item.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Vendor operational workspace with Status Online toggle switch.</li>
+              <li>Quick action buttons for restock input and direct sales recording.</li>
+              <li>Summary cards display wallet balance, sales income, restock cost, and local stock count.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 10: Vendor Stock -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">10</span>
+            <span class="mobile-screen-title">Vendor - Local Stock</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_10_vendor_stock.jpg')">
+            <img src="assets/tukangsayur/mobile_10_vendor_stock.jpg" alt="Vendor Stock Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Area Stok &amp; Harga Jual Saya menampilkan inventori milik vendor.</li>
+              <li>Setiap item menampilkan nama, kategori, jumlah stok, harga jual, dan status ketersediaan.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Lists vendor's local inventory with stock quantities and selling prices.</li>
+              <li>Each item shows name, category, available quantity, unit price, and availability status.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 11: Vendor Restock -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">11</span>
+            <span class="mobile-screen-title">Vendor - Input Restock</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_11_vendor_restock.jpg')">
+            <img src="assets/tukangsayur/mobile_11_vendor_restock.jpg" alt="Vendor Restock Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Memilih barang dari katalog master, mencatat jumlah dan harga beli per satuan.</li>
+              <li>Dapat menambahkan catatan lokasi pasar/kulakan untuk penelusuran.</li>
+              <li>Menambah stok lokal dan total pengeluaran restock.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Selects master product, records purchased quantity and unit purchase cost.</li>
+              <li>Optionally adds wholesale market location notes for traceability.</li>
+              <li>Increases local stock and updates restock expenditure summary.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile Screen 12: Vendor Direct Sales -->
+        <div class="mobile-frame-card">
+          <div class="mobile-frame-header">
+            <span class="mobile-screen-num">12</span>
+            <span class="mobile-screen-title">Vendor - Direct Sales</span>
+          </div>
+          <div class="mobile-img-container" onclick="openLightbox('assets/tukangsayur/mobile_12_vendor_direct_sale.jpg')">
+            <img src="assets/tukangsayur/mobile_12_vendor_direct_sale.jpg" alt="Vendor Direct Sales Mobile" class="mobile-frame-img">
+          </div>
+          <div class="mobile-frame-body">
+            <ul data-lang="id">
+              <li>Form penjualan langsung (POS) untuk transaksi di luar alur online pelanggan.</li>
+              <li>Pilih barang, jumlah, harga jual retail, dan catatan pembeli.</li>
+              <li>Mengurangi stok dan menambahkan saldo/pemasukan pedagang.</li>
+            </ul>
+            <ul data-lang="en">
+              <li>Direct-sale POS form recording sales made outside the online customer flow.</li>
+              <li>Selects product, quantity, retail selling price, and buyer notes.</li>
+              <li>Deducts stock and adds transaction value to vendor balance/income.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 04: Desktop / Web Operational Workspaces Showcase -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span data-lang="id">04. Dokumentasi Web Operational Workspace</span>
+        <span data-lang="en">04. Web Operational Workspaces Showcase</span>
+      </h2>
+
+      <div class="web-gallery-grid">
+
+        <!-- Web Card 1: Vendor Overview -->
+        <div class="web-frame-card">
+          <div class="web-frame-header">
+            <span class="web-dot red"></span>
+            <span class="web-dot yellow"></span>
+            <span class="web-dot green"></span>
+            <span class="web-frame-title">Dashboard Tukang Sayur - Pusat Operasional</span>
+          </div>
+          <div class="web-img-container" onclick="openLightbox('assets/tukangsayur/web_fig01_vendor_overview.jpg')">
+            <img src="assets/tukangsayur/web_fig01_vendor_overview.jpg" alt="Dashboard Tukang Sayur" class="web-frame-img">
+          </div>
+          <div class="web-frame-body">
+            <h4 data-lang="id">Dashboard Tukang Sayur (Vendor Workspace)</h4>
+            <h4 data-lang="en">Vendor Operational Workspace</h4>
+            <p data-lang="id">Dashboard utama pedagang menampilkan identitas lapak, status operasional Online/Offline, saldo dompet aplikasi (Rp 350.000), total income penjualan (Rp 40.000), pengeluaran restock (Rp 90.000), dan tabel stok &amp; harga jual.</p>
+            <p data-lang="en">Primary vendor dashboard displaying shop identity, Online/Offline operational toggle, application wallet balance (Rp 350,000), total sales income, restock expenses, and interactive stock &amp; pricing tables.</p>
+          </div>
+        </div>
+
+        <!-- Web Card 2: Restock Modal -->
+        <div class="web-frame-card">
+          <div class="web-frame-header">
+            <span class="web-dot red"></span>
+            <span class="web-dot yellow"></span>
+            <span class="web-dot green"></span>
+            <span class="web-frame-title">Modal Input Barang Masuk (Restock)</span>
+          </div>
+          <div class="web-img-container" onclick="openLightbox('assets/tukangsayur/web_fig04_restock_modal.jpg')">
+            <img src="assets/tukangsayur/web_fig04_restock_modal.jpg" alt="Restock Modal" class="web-frame-img">
+          </div>
+          <div class="web-frame-body">
+            <h4 data-lang="id">Modal Input Restock Barang</h4>
+            <h4 data-lang="en">Restock Input Modal</h4>
+            <p data-lang="id">Form modal untuk memasukkan persediaan barang baru dari pasar induk (kulakan). Memungkinkan pemantauan harga beli per unit (misal Bawang Merah Brebes 10 ikat @ Rp 3.000) dan catatan lokasi pasar.</p>
+            <p data-lang="en">Modal dialog for recording wholesale restock purchases from central markets. Supports tracking purchase quantity, unit cost (e.g. Brebes Shallots 10 units @ Rp 3,000), and wholesale location notes.</p>
+          </div>
+        </div>
+
+        <!-- Web Card 3: Mutation History -->
+        <div class="web-frame-card">
+          <div class="web-frame-header">
+            <span class="web-dot red"></span>
+            <span class="web-dot yellow"></span>
+            <span class="web-dot green"></span>
+            <span class="web-frame-title">Riwayat Mutasi &amp; Transaksi Income</span>
+          </div>
+          <div class="web-img-container" onclick="openLightbox('assets/tukangsayur/web_fig06_mutation_history.jpg')">
+            <img src="assets/tukangsayur/web_fig06_mutation_history.jpg" alt="Mutation History" class="web-frame-img">
+          </div>
+          <div class="web-frame-body">
+            <h4 data-lang="id">Riwayat Mutasi Transaksi &amp; Keuangan</h4>
+            <h4 data-lang="en">Transaction &amp; Mutation Ledger</h4>
+            <p data-lang="id">Tab Riwayat Mutasi menampilkan rekam timestamp transaksi secara detail, memisahkan transaksi Terjual (Keluar + Income) dan Restock (Masuk - Pengeluaran) secara transparan.</p>
+            <p data-lang="en">Transaction History ledger logging precise timestamps, distinguishing sales income (+ Income) and restock inventory purchases (- Expense) for full financial transparency.</p>
+          </div>
+        </div>
+
+        <!-- Web Card 4: Admin Catalog -->
+        <div class="web-frame-card">
+          <div class="web-frame-header">
+            <span class="web-dot red"></span>
+            <span class="web-dot yellow"></span>
+            <span class="web-dot green"></span>
+            <span class="web-frame-title">Dashboard Admin - Master Data Barang</span>
+          </div>
+          <div class="web-img-container" onclick="openLightbox('assets/tukangsayur/web_fig08_admin_catalog.jpg')">
+            <img src="assets/tukangsayur/web_fig08_admin_catalog.jpg" alt="Admin Master Data" class="web-frame-img">
+          </div>
+          <div class="web-frame-body">
+            <h4 data-lang="id">Master Data Barang Global (Admin)</h4>
+            <h4 data-lang="en">Global Master Product Catalog (Admin)</h4>
+            <p data-lang="id">Workspace Admin untuk mengelola database produk platform secara terpusat, mencakup foto produk, nama komoditas, kategori (Bumbu &amp; Rempah, Sayuran Hijau, Lauk Pauk), harga acuan default, dan kontrol aksi edit/hapus.</p>
+            <p data-lang="en">Central Administrator portal for maintaining global product master data, including imagery, commodity categories, unit default reference prices, and CRUD management controls.</p>
+          </div>
+        </div>
+
+        <!-- Web Card 5: Admin Out of Stock -->
+        <div class="web-frame-card">
+          <div class="web-frame-header">
+            <span class="web-dot red"></span>
+            <span class="web-dot yellow"></span>
+            <span class="web-dot green"></span>
+            <span class="web-frame-title">Laporan Barang Kosong Terpusat</span>
+          </div>
+          <div class="web-img-container" onclick="openLightbox('assets/tukangsayur/web_fig10_admin_out_of_stock.jpg')">
+            <img src="assets/tukangsayur/web_fig10_admin_out_of_stock.jpg" alt="Admin Out of Stock Report" class="web-frame-img">
+          </div>
+          <div class="web-frame-body">
+            <h4 data-lang="id">Laporan Monitoring Stok Kosong (Admin)</h4>
+            <h4 data-lang="en">Centralized Out-of-Stock Report (Admin)</h4>
+            <p data-lang="id">Memberikan Admin visibilitas waktu-nyata terhadap toko/lapak pedagang yang stok persediaannya telah mencapai 0, mempermudah koordinasi restock atau suplai komoditas.</p>
+            <p data-lang="en">Provides Administrators with real-time visibility into vendor shops whose local stock has dropped to zero, enabling proactive supply replenishment coordination.</p>
+          </div>
+        </div>
+
+        <!-- Web Card 6: Customer Discovery -->
+        <div class="web-frame-card">
+          <div class="web-frame-header">
+            <span class="web-dot red"></span>
+            <span class="web-dot yellow"></span>
+            <span class="web-dot green"></span>
+            <span class="web-frame-title">Dashboard Pelanggan - Discovery Terdekat</span>
+          </div>
+          <div class="web-img-container" onclick="openLightbox('assets/tukangsayur/web_fig12_customer_discovery.jpg')">
+            <img src="assets/tukangsayur/web_fig12_customer_discovery.jpg" alt="Customer Discovery Dashboard" class="web-frame-img">
+          </div>
+          <div class="web-frame-body">
+            <h4 data-lang="id">Pencarian Sayur &amp; Vendor Terdekat</h4>
+            <h4 data-lang="en">Nearby Vendor &amp; Product Discovery</h4>
+            <p data-lang="id">Dashboard pelanggan dengan fitur kalkulasi lokasi geo real-time (misal Sunter Garden, Jakarta Utara). Hanya menampilkan produk dari pedagang berstatus Online yang memiliki persediaan stok.</p>
+            <p data-lang="en">Customer discovery engine with real-time geo-location calculations. Automatically filters and presents ready-stock products exclusively from active Online vendors.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 05: System Business & Operational Rules -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span data-lang="id">05. Aturan Stok, Status, dan Transaksi Sistem</span>
+        <span data-lang="en">05. System Stock, Status &amp; Transaction Rules</span>
+      </h2>
+
+      <div class="data-table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Aturan / Business Rule</th>
+              <th>Perilaku Sistem (System Behavior)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stok Lokal Vendor</strong></td>
+              <td data-lang="id">Restock menambah jumlah stok lokal pedagang dan menambahkan total pengeluaran modal restock.</td>
+              <td data-lang="en">Restocking increases vendor local inventory and adds to total restock expenditure.</td>
+            </tr>
+            <tr>
+              <td><strong>Penjualan &amp; Pembelian</strong></td>
+              <td data-lang="id">Penjualan langsung (POS) maupun transaksi pembelian dari pelanggan mengurangi stok barang vendor secara instan.</td>
+              <td data-lang="en">Direct sales (POS) and customer purchases deduct vendor product stock immediately.</td>
+            </tr>
+            <tr>
+              <td><strong>Saldo / Income Aplikasi</strong></td>
+              <td data-lang="id">Penjualan yang sukses tercatat menambah saldo/pemasukan pedagang sesuai dengan nilai total nominal transaksi.</td>
+              <td data-lang="en">Recorded sales increase the application balance and vendor income according to total transaction value.</td>
+            </tr>
+            <tr>
+              <td><strong>Status Online Lapak</strong></td>
+              <td data-lang="id">Pedagang berstatus Online dengan persediaan ready stock dapat muncul pada pencarian discovery pelanggan terdekat.</td>
+              <td data-lang="en">An Online vendor with ready stock is visible on customer nearby discovery feeds.</td>
+            </tr>
+            <tr>
+              <td><strong>Status Offline Lapak</strong></td>
+              <td data-lang="id">Saat pedagang mengubah status menjadi Offline (istirahat/tutup), toko dan seluruh produknya disembunyikan dari discovery pelanggan.</td>
+              <td data-lang="en">When switched Offline, the shop and all its products are hidden from customer discovery view.</td>
+            </tr>
+            <tr>
+              <td><strong>Stok 0 (Habis)</strong></td>
+              <td data-lang="id">Produk dengan stok 0 tidak lagi ditampilkan di sisi pelanggan; pedagang melihat status Stok Habis, dan Admin melihatnya di Laporan Barang Kosong.</td>
+              <td data-lang="en">Products reaching 0 stock disappear from customer discovery; vendors see Out of Stock, and Admin monitors them in Out-of-Stock report.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 06: Functional Test Scenarios & Glossary -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span data-lang="id">06. Skenario Uji Fungsional &amp; Glosarium</span>
+        <span data-lang="en">06. Functional Test Scenarios &amp; Glossary</span>
+      </h2>
+
+      <div class="data-table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Skenario Uji</th>
+              <th>Langkah Utama</th>
+              <th>Hasil yang Diharapkan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Registrasi Vendor</strong></td>
+              <td data-lang="id">Daftarkan akun Tukang Sayur dengan nama lapak dan lokasi jualan.</td>
+              <td data-lang="en">Register a Tukang Sayur account with shop identity and location details.</td>
+            </tr>
+            <tr>
+              <td><strong>Input Restock</strong></td>
+              <td data-lang="id">Pilih barang master, isi qty &amp; harga beli, lalu simpan.</td>
+              <td data-lang="en">Stok lokal bertambah &amp; pengeluaran modal restock diperbarui.</td>
+            </tr>
+            <tr>
+              <td><strong>Penjualan Langsung</strong></td>
+              <td data-lang="id">Jual item melalui modal penjualan langsung.</td>
+              <td data-lang="en">Stok berkurang, saldo/income bertambah, transaksi muncul di riwayat.</td>
+            </tr>
+            <tr>
+              <td><strong>Toggle Offline</strong></td>
+              <td data-lang="id">Ubah sakelar Status Online menjadi Offline.</td>
+              <td data-lang="en">Lapak &amp; produk tidak muncul lagi pada pencarian pelanggan.</td>
+            </tr>
+            <tr>
+              <td><strong>Geo Discovery</strong></td>
+              <td data-lang="id">Cari produk ketika vendor Online dan stok tersedia.</td>
+              <td data-lang="en">Produk muncul beserta informasi jarak (km) dan sisa stok.</td>
+            </tr>
+            <tr>
+              <td><strong>Deplesi Stok (Stok Habis)</strong></td>
+              <td data-lang="id">Lakukan transaksi hingga stok menjadi 0.</td>
+              <td data-lang="en">Produk hilang dari discovery, vendor melihat Stok Habis, Admin melihat di Barang Kosong.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="about-card" style="margin-top: 2rem;">
+        <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;" data-lang="id">Glosarium Istilah Technical</h3>
+        <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;" data-lang="en">Technical Terms Glossary</h3>
+        
+        <ul style="padding-left: 1.2rem; color: #cbd5e1; line-height: 1.8;">
+          <li><strong>Katalog Master:</strong> Daftar produk global yang dikelola Admin dan dipilih vendor saat restock.</li>
+          <li><strong>Restock:</strong> Pencatatan stok masuk dari pasar induk ke inventori lokal pedagang.</li>
+          <li><strong>Ready Stock:</strong> Persediaan barang lokal pedagang yang kuantitasnya lebih besar dari 0.</li>
+          <li><strong>Online / Offline Status:</strong> Sakelar kesiapan lapak untuk mengontrol visibilitas di aplikasi pelanggan.</li>
+          <li><strong>Geo-Location Engine:</strong> Fitur kalkulasi jarak geografis (koordinat lat/lng) antara pelanggan dan lokasi lapak pedagang.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Bottom Action Section -->
+    <div style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+      <h3 style="margin-bottom: 1rem; color: #ffffff;">Explore Source Code &amp; Documentation</h3>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="https://github.com/sonnyariady/TukangSayurOnline" target="_blank" rel="noopener" class="btn-cta" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">
+          View Repository on GitHub &rarr;
+        </a>
+        <a href="index.html#projects" class="btn-secondary">
+          &larr; Back to Portfolio Projects
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Image Lightbox Modal -->
+  <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="Full view screenshot">
+  </div>
+
+  <!-- JavaScript for Language Switcher & Lightbox -->
+  <script>
+    function setLanguage(lang) {
+      if (lang === 'en') {
+        document.body.className = 'lang-en';
+        document.getElementById('btn-lang-id').classList.remove('active');
+        document.getElementById('btn-lang-en').classList.add('active');
+      } else {
+        document.body.className = 'lang-id';
+        document.getElementById('btn-lang-en').classList.remove('active');
+        document.getElementById('btn-lang-id').classList.add('active');
+      }
+    }
+
+    function openLightbox(imgSrc) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imgSrc;
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
