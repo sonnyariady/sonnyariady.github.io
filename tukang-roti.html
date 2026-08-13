@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TukangRoti (Sonny Bakery POS & Management) | Sonny Ariady Portfolio</title>
+  <meta name="description" content="TukangRoti Case Study: Fullstack dynamic bakery production, inventory, POS cashier, thermal receipt printing, and order management system built with React 19, TypeScript, Vite, Express, Prisma, and PostgreSQL.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom Showcase Page Highlights */
+    .amber-badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .gradient-amber-text {
+      background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lang-switcher-container {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 4px;
+      margin-top: 1rem;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+    }
+    .lang-en { display: none; }
+    body.lang-en-active .lang-id { display: none !important; }
+    body.lang-en-active .lang-en { display: block !important; }
+    body.lang-en-active inline.lang-en,
+    body.lang-en-active span.lang-en { display: inline !important; }
+
+    /* Web Frame Showcase Cards */
+    .web-frame-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .web-frame-card:hover {
+      border-color: rgba(245, 158, 11, 0.5);
+      transform: translateY(-4px);
+    }
+    .web-frame-header {
+      background: rgba(15, 23, 42, 0.95);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .web-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .web-dot.red { background: #ef4444; }
+    .web-dot.yellow { background: #f59e0b; }
+    .web-dot.green { background: #10b981; }
+    .web-frame-title {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-left: 8px;
+      font-family: monospace;
+    }
+    .web-img-container {
+      cursor: zoom-in;
+      position: relative;
+      background: #0f172a;
+    }
+    .web-frame-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .img-caption {
+      padding: 12px 16px;
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox-modal.active { display: flex; }
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 25px;
+      color: #fff;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Feature Grid Layout */
+    .feature-grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .feature-grid-2col { grid-template-columns: 1fr; }
+    }
+    .code-block {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .code-comment { color: #64748b; }
+    .code-cmd { color: #38bdf8; font-weight: 600; }
+  </style>
+</head>
+<body class="lang-id-active">
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Sonny Ariady</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html" class="btn-back">&larr; Back to Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- Case Study Hero Header -->
+    <header class="case-study-hero" style="text-align: center; margin-bottom: 3.5rem;">
+      <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap;">
+        <span class="amber-badge">Case Study &bull; Fullstack React 19 & Vite</span>
+        <span class="amber-badge" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.3);">Bakery POS &amp; Management</span>
+      </div>
+
+      <h1 class="gradient-amber-text" style="font-size: 2.75rem; margin-bottom: 0.75rem;">TukangRoti (Sonny Bakery)</h1>
+      
+      <p class="case-study-subtitle lang-id" style="font-size: 1.2rem; color: #cbd5e1; max-width: 850px; margin: 0 auto 1.5rem auto;">
+        Sistem manajemen produksi, inventaris, kasir POS (Point of Sale), dan pesanan toko roti terintegrasi berbasis <strong>React 19, TypeScript, Vite, Express, Prisma ORM, dan PostgreSQL</strong>.
+      </p>
+      <p class="case-study-subtitle lang-en" style="font-size: 1.2rem; color: #cbd5e1; max-width: 850px; margin: 0 auto 1.5rem auto;">
+        Integrated bakery production, inventory, POS cashier, thermal receipt printing, and order management system built with <strong>React 19, TypeScript, Vite, Express, Prisma ORM, and PostgreSQL</strong>.
+      </p>
+
+      <div class="tag-cloud" style="justify-content: center; margin-bottom: 1.5rem;">
+        <span class="tag highlight" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">React 19 &amp; Vite</span>
+        <span class="tag highlight" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">Node.js &amp; Express</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Prisma ORM</span>
+        <span class="tag">PostgreSQL 16</span>
+        <span class="tag">POS Quick Checkout</span>
+        <span class="tag">Thermal Receipt Printing</span>
+        <span class="tag">Near-Expired Early Warning</span>
+        <span class="tag">Batch Oven Management</span>
+      </div>
+
+      <!-- Language Switcher Bar -->
+      <div class="lang-switcher-container">
+        <button class="lang-btn active" id="btn-lang-id" onclick="setLanguage('id')">
+          🇮🇩 Bahasa Indonesia
+        </button>
+        <button class="lang-btn" id="btn-lang-en" onclick="setLanguage('en')">
+          🇬🇧 English Manual
+        </button>
+      </div>
+    </header>
+
+    <!-- Cover Banner Screenshot -->
+    <div style="margin-bottom: 4rem; text-align: center;">
+      <div class="web-frame-card" style="max-width: 1050px; margin: 0 auto;">
+        <div class="web-frame-header">
+          <span class="web-dot red"></span>
+          <span class="web-dot yellow"></span>
+          <span class="web-dot green"></span>
+          <span class="web-frame-title">TukangRoti - Operational Dashboard Workspace</span>
+        </div>
+        <div class="web-img-container" onclick="openLightbox('assets/tukangroti/dashboard_page_1786605159388.png')">
+          <img src="assets/tukangroti/dashboard_page_1786605159388.png" alt="TukangRoti Dashboard Workspace" class="web-frame-img">
+        </div>
+        <div class="img-caption">
+          <span class="lang-id"><strong>Gambar 1.1:</strong> Antarmuka Dashboard Operasional Utama TukangRoti (Sonny Bakery) — Menampilkan Ringkasan Produksi, Penjualan, Peringatan Kedaluwarsa, dan Cetak Cepat Dokumen Struk.</span>
+          <span class="lang-en"><strong>Figure 1.1:</strong> TukangRoti Main Operational Dashboard Interface — Featuring Production Summary, Today's Sales, Expiry Warnings, and Quick Thermal Receipt Printing.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 01: Executive Summary -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">01. Ringkasan Eksekutif &amp; Tujuan Utama</span>
+        <span class="lang-en">01. Executive Summary &amp; Core Objectives</span>
+      </h2>
+
+      <div class="about-card lang-id">
+        <p>
+          <strong>TukangRoti (Sonny Bakery)</strong> dirancang untuk menyelesaikan tantangan operasional bisnis toko roti modern. Dalam usaha bakery, pencatatan persediaan roti jadi (*Finished Goods*) dan bahan baku (*Raw Materials*) harus dikelola secara presisi untuk menghindari kerugian akibat bahan kedaluwarsa atau kehabisan stok adonan saat lonjakan pesanan.
+        </p>
+        <p>
+          Sistem ini mengintegrasikan seluruh rantai operasional toko roti dari <strong>Setup Awal Bisnis, Autentikasi Pengguna Berbasis Peran (RBAC), Kasir POS dengan cetak struk thermal, Peringatan Dini Kedaluwarsa (H-1), Manajemen Batch Oven Produksi, hingga Pengaturan Identitas Toko secara Dinamis</strong>.
+        </p>
+      </div>
+
+      <div class="about-card lang-en">
+        <p>
+          <strong>TukangRoti (Sonny Bakery)</strong> was engineered to solve complex operational challenges faced by modern artisanal bakeries. Managing bakery operations requires real-time tracking of finished baked goods as well as perishable raw ingredients to prevent stock wastage and production bottlenecks.
+        </p>
+        <p>
+          This application seamlessly integrates the entire bakery workflow: <strong>Interactive Business Setup Wizard, Role-Based Access Control (RBAC), Point of Sale (POS) Kasir with thermal receipt printing, Near-Expired Warning alerts (H-1), Oven Batch Production scheduling, and Dynamic Store Branding</strong>.
+        </p>
+      </div>
+
+      <div class="workflow-steps-grid" style="margin-top: 1.5rem;">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>
+            <span class="lang-id">Setup Interaktif</span>
+            <span class="lang-en">Interactive Setup Wizard</span>
+          </h4>
+          <p>
+            <span class="lang-id">Pengecekan otomatis saat instalasi baru untuk memandu pemilik usaha membuat akun Owner pertama, mengisi profil bisnis, dan mengatur mata uang.</span>
+            <span class="lang-en">Automatic detection of fresh installations guiding owners to create their initial account, configure business profile, and currency settings.</span>
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>
+            <span class="lang-id">POS &amp; Struk Thermal</span>
+            <span class="lang-en">POS Kasir &amp; Thermal Receipts</span>
+          </h4>
+          <p>
+            <span class="lang-id">Kasir cepat dengan dukungan pembayaran Cash, QRIS, dan Bank Transfer, kalkulasi kembalian otomatis, serta cetak struk thermal 58mm/80mm.</span>
+            <span class="lang-en">Rapid checkout supporting Cash, QRIS, and Bank Transfer with automated change calculation and thermal receipt printing (58mm/80mm).</span>
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>
+            <span class="lang-id">Stok &amp; Batch Oven</span>
+            <span class="lang-en">Stock &amp; Batch Oven Control</span>
+          </h4>
+          <p>
+            <span class="lang-id">Pemisahan persediaan Roti Jadi dan Bahan Baku, deteksi roti mendekati expired (H-1), dan otomatisasi stok masuk saat batch oven selesai.</span>
+            <span class="lang-en">Dual inventory tracking for Finished Goods and Raw Ingredients, near-expiry alerts, and automatic stock sync upon batch completion.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 02: Core Feature Modules Showcase -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">02. Modul Fitur Utama &amp; Antarmuka Aplikasi</span>
+        <span class="lang-en">02. Core Feature Modules &amp; Showcase</span>
+      </h2>
+
+      <!-- Module 1: Login & Setup Wizard -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.4rem; margin-bottom: 1rem;">
+          <span class="lang-id">1. Autentikasi &amp; Penyiapan Awal Toko (Setup Wizard)</span>
+          <span class="lang-en">1. Authentication &amp; Interactive Setup Wizard</span>
+        </h3>
+        <div class="feature-grid-2col">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Login Page &amp; RBAC Auth</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/login_page_1786605103533.png')">
+              <img src="assets/tukangroti/login_page_1786605103533.png" alt="Login Page" class="web-frame-img">
+            </div>
+          </div>
+          <div class="about-card">
+            <h4>
+              <span class="lang-id">Keamanan JWT &amp; Role-Based Access Control</span>
+              <span class="lang-en">JWT Security &amp; Role-Based Access Control</span>
+            </h4>
+            <p class="lang-id">
+              Keamanan aplikasi didukung enkripsi password Bcrypt dan token JWT. Akses fitur disesuaikan dengan peran pengguna:
+            </p>
+            <p class="lang-en">
+              System security features Bcrypt password hashing and JWT authentication. Access controls enforce strict role privileges:
+            </p>
+            <ul style="padding-left: 1.2rem; color: #cbd5e1; line-height: 1.8;">
+              <li><strong>OWNER:</strong> <span class="lang-id">Akses penuh ke seluruh sistem, laporan keuangan, dan pengaturan toko.</span><span class="lang-en">Full control over financials, reports, user roles, and store branding.</span></li>
+              <li><strong>MANAGER:</strong> <span class="lang-id">Pengelolaan inventaris, jadwal produksi, dan laporan harian.</span><span class="lang-en">Inventory management, batch production planning, and daily reports.</span></li>
+              <li><strong>KASIR:</strong> <span class="lang-id">Fokus ke transaksi penjualan POS dan percetakan struk.</span><span class="lang-en">Dedicated POS checkout interface and receipt printing.</span></li>
+              <li><strong>PRODUKSI:</strong> <span class="lang-id">Pemantauan status oven dan pembaruan hasil batch roti.</span><span class="lang-en">Oven batch tracking and batch completion status updates.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2: POS Kasir Checkout & Thermal Receipts -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.4rem; margin-bottom: 1rem;">
+          <span class="lang-id">2. Kasir POS &amp; Pratinjau Struk Belanja</span>
+          <span class="lang-en">2. Point of Sale (POS) &amp; Thermal Receipt Engine</span>
+        </h3>
+        
+        <div class="feature-grid-2col">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">POS Kasir - Active Checkout</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/pos_filled_page_1786605212383.png')">
+              <img src="assets/tukangroti/pos_filled_page_1786605212383.png" alt="POS Active Checkout" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Printable Receipt Modal Preview</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/pos_receipt_preview_1786605222046.png')">
+              <img src="assets/tukangroti/pos_receipt_preview_1786605222046.png" alt="Thermal Receipt Preview" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card" style="margin-top: 1.5rem;">
+          <p class="lang-id">
+            Modul <strong>Orders &amp; POS</strong> memberikan kemudahan bagi kasir untuk menyaring katalog roti berdasarkan kategori (Donat, Roti Manis, Pastry, Roti Tawar). Kasir dapat memasukkan nama pelanggan, memilih metode pembayaran (Cash/QRIS/Bank Transfer), dan mencetak struk belanja thermal secara langsung yang sudah memuat logo dan header toko yang dinamis.
+          </p>
+          <p class="lang-en">
+            The <strong>Orders &amp; POS</strong> module enables fast product selection with category tabs (Donut, Sweet Bread, Pastry, Toast). Cashiers enter customer details, select payment methods (Cash/QRIS/Bank Transfer), and trigger thermal receipts with live store branding.
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 3: Inventory Management -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.4rem; margin-bottom: 1rem;">
+          <span class="lang-id">3. Pengelolaan Stok Ganda: Roti Jadi &amp; Bahan Baku</span>
+          <span class="lang-en">3. Dual Inventory Tracking: Bakery Goods &amp; Raw Materials</span>
+        </h3>
+        
+        <div class="feature-grid-2col">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Bakery Finished Goods Inventory Tab</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/inventory_bakery_tab_1786605242860.png')">
+              <img src="assets/tukangroti/inventory_bakery_tab_1786605242860.png" alt="Bakery Inventory" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Raw Materials Inventory Tab</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/inventory_raw_tab_1786605255838.png')">
+              <img src="assets/tukangroti/inventory_raw_tab_1786605255838.png" alt="Raw Materials Inventory" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card" style="margin-top: 1.5rem;">
+          <p class="lang-id">
+            <strong>Peringatan Kedaluwarsa Dini (Near-Expired Warning):</strong> Roti yang mendekati tanggal kedaluwarsa (default H-1) otomatis ditandai dengan badge oranye/kuning baik di halaman inventaris maupun di dashboard. Hal ini memudahkan pemilik toko untuk segera menggelar program diskon <em>Happy Hour / Clearance Sale</em> untuk menekan potensi <em>food waste</em>.
+          </p>
+          <p class="lang-en">
+            <strong>Near-Expired Early Warning System:</strong> Baked items approaching their expiration date (default H-1) trigger prominent warning badges on both Inventory and Dashboard pages, allowing staff to initiate promotional discounts before product expiration.
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 4: Production & Reports & Settings -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.4rem; margin-bottom: 1rem;">
+          <span class="lang-id">4. Batch Oven Produksi, Laporan Analitik, &amp; Pengaturan System</span>
+          <span class="lang-en">4. Oven Production Batches, Reports Analytics, &amp; System Settings</span>
+        </h3>
+        
+        <div class="feature-grid-2col">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Oven Batch Production Lifecycle</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/production_page_1786605271517.png')">
+              <img src="assets/tukangroti/production_page_1786605271517.png" alt="Batch Production" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Financial &amp; Top 5 Best Sellers Reports</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/reports_page_1786605284779.png')">
+              <img src="assets/tukangroti/reports_page_1786605284779.png" alt="Reports Page" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-grid-2col" style="margin-top: 1.5rem;">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Dynamic Business Profile &amp; Logo Upload</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/settings_profile_tab_1786605297620.png')">
+              <img src="assets/tukangroti/settings_profile_tab_1786605297620.png" alt="Business Profile Settings" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Payment Methods &amp; Merchant QRIS Upload</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/tukangroti/settings_payments_tab_1786605307499.png')">
+              <img src="assets/tukangroti/settings_payments_tab_1786605307499.png" alt="Payment Methods Settings" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 03: Architecture & Tech Stack -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">03. Arsitektur Teknis &amp; Tech Stack</span>
+        <span class="lang-en">03. Technical Architecture &amp; Tech Stack</span>
+      </h2>
+
+      <div class="about-card">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+          <div>
+            <h4 style="color: #fbbf24; margin-bottom: 0.5rem;">Frontend Layer</h4>
+            <ul style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">
+              <li><strong>Framework:</strong> React 19 &amp; TypeScript</li>
+              <li><strong>Build Tool:</strong> Vite</li>
+              <li><strong>Icon Set:</strong> Lucide React</li>
+              <li><strong>Styling:</strong> Vanilla CSS Custom Tokens, Glassmorphism, Dark Theme</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 style="color: #fbbf24; margin-bottom: 0.5rem;">Backend Layer</h4>
+            <ul style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">
+              <li><strong>Runtime:</strong> Node.js &amp; Express (TypeScript)</li>
+              <li><strong>Security:</strong> JWT Tokens &amp; BcryptJS</li>
+              <li><strong>File Upload:</strong> Multer Engine</li>
+              <li><strong>ORM &amp; DB Driver:</strong> Prisma ORM &amp; PostgreSQL client (`pg`)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 style="color: #fbbf24; margin-bottom: 0.5rem;">Database &amp; Infra</h4>
+            <ul style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">
+              <li><strong>Database:</strong> PostgreSQL 16</li>
+              <li><strong>Containerization:</strong> Docker &amp; Docker Compose</li>
+              <li><strong>Concurrent Execution:</strong> NPM `concurrently`</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 04: Getting Started Guide -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">04. Panduan Cara Menjalankan Aplikasi (Step-by-Step)</span>
+        <span class="lang-en">04. Step-by-Step Setup &amp; Getting Started</span>
+      </h2>
+
+      <div class="about-card">
+        <p class="lang-id">Ikuti langkah-langkah berikut untuk menjalankan server backend dan client frontend secara bersamaan:</p>
+        <p class="lang-en">Follow these steps to run both backend Express server and Vite React client concurrently:</p>
+
+        <ol style="padding-left: 1.2rem; color: #cbd5e1; line-height: 1.9;">
+          <li>
+            <strong>Install Dependensi Project:</strong>
+            <div class="code-block">
+              <span class="code-cmd">npm install</span>
+            </div>
+          </li>
+          <li>
+            <strong>Jalankan Container PostgreSQL (Docker Compose):</strong>
+            <div class="code-block">
+              <span class="code-cmd">docker-compose up -d</span>
+              <span class="code-comment"> # PostgreSQL otomatis berjalan di port 5433</span>
+            </div>
+          </li>
+          <li>
+            <strong>Push Schema Prisma &amp; Seed Data Awal:</strong>
+            <div class="code-block">
+              <span class="code-cmd">npm run db:push</span><br>
+              <span class="code-cmd">npm run db:seed</span>
+            </div>
+          </li>
+          <li>
+            <strong>Jalankan Mode Development (Server &amp; Client):</strong>
+            <div class="code-block">
+              <span class="code-cmd">npm run dev</span>
+            </div>
+          </li>
+        </ol>
+
+        <div style="margin-top: 1rem; padding: 1rem; background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 4px;">
+          <strong>Default Login Credentials:</strong><br>
+          Username: <code style="color: #fbbf24;">owner</code> | Password: <code style="color: #fbbf24;">owner123</code>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Sonny Ariady &mdash; Senior .NET Developer &amp; Technical Consultant. Hosted on GitHub Pages.
+  </footer>
+
+  <!-- Lightbox Modal Container -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightboxImg" src="" alt="Full Screen Screenshot">
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function setLanguage(lang) {
+      const body = document.body;
+      const btnId = document.getElementById('btn-lang-id');
+      const btnEn = document.getElementById('btn-lang-en');
+
+      if (lang === 'en') {
+        body.classList.remove('lang-id-active');
+        body.classList.add('lang-en-active');
+        btnEn.classList.add('active');
+        btnId.classList.remove('active');
+      } else {
+        body.classList.remove('lang-en-active');
+        body.classList.add('lang-id-active');
+        btnId.classList.add('active');
+        btnEn.classList.remove('active');
+      }
+    }
+
+    function openLightbox(src) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      modal.classList.add('active');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.remove('active');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
