@@ -9,6 +9,8 @@ ARTIFACT_DIR = r"C:\Users\LENOVO\.gemini\antigravity-ide\brain\84ce79b3-a508-400
 SCRATCH_DIR = os.path.join(OUTPUT_DIR, "scratch")
 os.makedirs(SCRATCH_DIR, exist_ok=True)
 
+DATE_SUFFIX = "23Aug2026"
+
 # 1. Local CV HTML Template
 html_local = """<!DOCTYPE html>
 <html lang="en">
@@ -323,7 +325,7 @@ html_local = """<!DOCTYPE html>
     </div>
   </div>
 
-  <div class="footer-note">Updated: August 2026</div>
+  <div class="footer-note">Updated: August 23, 2026</div>
 
 </body>
 </html>
@@ -699,7 +701,7 @@ html_international = """<!DOCTYPE html>
 
   <div class="footer">
     <span>Sonny Ariady | CV</span>
-    <span>Updated: August 2026</span>
+    <span>Updated: August 23, 2026</span>
   </div>
 
 </body>
@@ -709,11 +711,14 @@ html_international = """<!DOCTYPE html>
 html_local_path = os.path.join(SCRATCH_DIR, "cv_local.html")
 html_int_path = os.path.join(SCRATCH_DIR, "cv_international.html")
 
-pdf_local_path = os.path.join(OUTPUT_DIR, "Sonny_Ariady_CV_Local.pdf")
-pdf_int_path = os.path.join(OUTPUT_DIR, "Sonny_Ariady_CV_International.pdf")
+pdf_local_name = f"Sonny_Ariady_CV_Local_{DATE_SUFFIX}.pdf"
+pdf_int_name = f"Sonny_Ariady_CV_International_{DATE_SUFFIX}.pdf"
 
-pdf_local_art = os.path.join(ARTIFACT_DIR, "Sonny_Ariady_CV_Local.pdf")
-pdf_int_art = os.path.join(ARTIFACT_DIR, "Sonny_Ariady_CV_International.pdf")
+pdf_local_path = os.path.join(OUTPUT_DIR, pdf_local_name)
+pdf_int_path = os.path.join(OUTPUT_DIR, pdf_int_name)
+
+pdf_local_art = os.path.join(ARTIFACT_DIR, pdf_local_name)
+pdf_int_art = os.path.join(ARTIFACT_DIR, pdf_int_name)
 
 with open(html_local_path, "w", encoding="utf-8") as f:
     f.write(html_local)
@@ -756,5 +761,5 @@ print("Copied PDFs to artifact directory.")
 # Page count check
 r1 = pypdf.PdfReader(pdf_local_path)
 r2 = pypdf.PdfReader(pdf_int_path)
-print(f"Local PDF Pages: {len(r1.pages)}")
-print(f"International PDF Pages: {len(r2.pages)}")
+print(f"Local PDF ({pdf_local_name}) Pages: {len(r1.pages)}")
+print(f"International PDF ({pdf_int_name}) Pages: {len(r2.pages)}")
