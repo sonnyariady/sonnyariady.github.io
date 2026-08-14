@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataKaryawan (Sistem Manajemen Data Karyawan) | Sonny Ariady Portfolio</title>
+  <meta name="description" content="DataKaryawan Case Study: Fullstack Employee Data Management System built with Python 3.10+ (FastAPI), ReactJS 18 (Vite), SQLite (SQLAlchemy), JWT Authentication, and Excel/CSV Export.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom Showcase Highlights */
+    .indigo-badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+    .gradient-indigo-text {
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lang-switcher-container {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+      border-radius: 30px;
+      padding: 4px;
+      margin-top: 1rem;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted, #94a3b8);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+    }
+    .lang-en { display: none; }
+    body.lang-en-active .lang-id { display: none !important; }
+    body.lang-en-active .lang-en { display: block !important; }
+    body.lang-en-active inline.lang-en,
+    body.lang-en-active span.lang-en { display: inline !important; }
+
+    /* Code & Blueprint Formatting */
+    pre, code {
+      font-family: 'Fira Code', monospace;
+      background-color: #0f172a;
+      color: #f1f5f9;
+      border-radius: 6px;
+    }
+    pre {
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,0.08);
+      line-height: 1.5;
+    }
+    code {
+      padding: 2px 6px;
+      font-size: 13px;
+      color: #38bdf8;
+    }
+
+    /* Table Styling */
+    .blueprint-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .blueprint-table th {
+      background-color: #0f172a;
+      color: #818cf8;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .blueprint-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+    }
+    .blueprint-table tr:hover td {
+      background-color: rgba(99, 102, 241, 0.05);
+    }
+
+    /* Section Cards */
+    .showcase-card {
+      background: var(--bg-card, rgba(23, 32, 54, 0.7));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+    .showcase-card h3 {
+      color: #818cf8;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .badge-endpoint {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: monospace;
+      margin-right: 6px;
+    }
+    .badge-get { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .badge-post { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    .badge-put { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .badge-delete { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+      font-weight: 700;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Sonny Ariady</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html" class="btn-back">&larr; Back to Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    
+    <!-- Hero Header -->
+    <header class="case-study-hero" style="text-align: center; padding: 3rem 1rem;">
+      <span class="indigo-badge">&bull; Vibe Coding &amp; AI-Assisted Learning Blueprint &bull;</span>
+      <h1 style="font-size: 2.5rem; margin: 1rem 0 0.5rem 0;" class="gradient-indigo-text">
+        Sistem Manajemen Data Karyawan
+      </h1>
+      <p class="case-study-subtitle" style="font-size: 1.1rem; color: var(--text-muted, #94a3b8);">
+        Employee Data Management System (Python FastAPI + ReactJS + SQLite + JWT)
+      </p>
+
+      <!-- Language Switcher -->
+      <div class="lang-switcher-container">
+        <button id="btn-lang-id" class="lang-btn active" onclick="setLanguage('id')">🇮🇩 Bahasa Indonesia</button>
+        <button id="btn-lang-en" class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button>
+      </div>
+
+      <div class="tag-cloud" style="justify-content: center; margin: 1.5rem 0 1rem 0;">
+        <span class="tag highlight" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border-color: rgba(168, 85, 247, 0.4);">Vibe Coding</span>
+        <span class="tag highlight" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; border-color: rgba(99, 102, 241, 0.4);">Python 3.10+ (FastAPI)</span>
+        <span class="tag highlight" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; border-color: rgba(99, 102, 241, 0.4);">ReactJS 18 (Vite)</span>
+        <span class="tag">SQLite &amp; SQLAlchemy</span>
+        <span class="tag">JWT Auth</span>
+        <span class="tag">Pandas &amp; OpenPyXL</span>
+        <span class="tag highlight">Excel / CSV Export</span>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <a href="https://github.com/sonnyariady/fastapi-react-employee-crud" target="_blank" rel="noopener" class="btn-cta" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); padding: 10px 24px; border-radius: 30px; font-weight: 700; text-decoration: none; color: #fff; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View GitHub Repository &rarr;
+        </a>
+      </div>
+    </header>
+
+    <!-- SECTION 1: OVERVIEW & SETUP GUIDE (README) -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">📌 SECTION 1: Ringkasan Proyek &amp; Cara Menjalankan (README)</span>
+        <span class="lang-en">📌 SECTION 1: Executive Overview &amp; Setup Guide (README)</span>
+      </h2>
+
+      <div class="showcase-card">
+        <div class="lang-id">
+          <!-- Vibe Coding Callout Box -->
+          <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%); border: 1px solid rgba(99, 102, 241, 0.4); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+            <h3 style="color: #c084fc; margin-top: 0; display: flex; align-items: center; gap: 8px;">
+              🚀 Vibe Coding &amp; AI-Assisted Learning Blueprint
+            </h3>
+            <p style="color: #f1f5f9; font-size: 1rem; line-height: 1.7; margin-bottom: 0.8rem;">
+              Aplikasi ini merupakan <strong>hasil karya Vibe Coding dan pengembangan AI-assisted</strong> yang dibangun sebagai <strong>proyek pembelajaran awal full-stack CRUD</strong> (Python FastAPI + ReactJS).
+            </p>
+            <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">
+              💡 <em>Proyek ini berfungsi sebagai pondasi awal dan cetak biru (learning blueprint) yang akan dikembangkan lebih lanjut untuk proyek-proyek aplikasi berikutnya dengan metode dan pendekatan terstruktur yang serupa.</em>
+            </p>
+          </div>
+
+          <p>
+            Aplikasi Full-Stack Web modern untuk <strong>Manajemen Data Karyawan</strong> yang dilengkapi dengan Otentikasi JWT, CRUD lengkap, Lookup Supervisor dinamis, pencarian &amp; filter multi-kriteria, serta fitur Ekspor Data ke format <strong>Excel (.xlsx)</strong> dan <strong>CSV (.csv)</strong>.
+          </p>
+
+          <h3>✨ Fitur Utama</h3>
+          <ul style="line-height: 1.8; color: #cbd5e1; padding-left: 1.2rem;">
+            <li>🔒 <strong>Otentikasi &amp; Keamanan JWT</strong>: Login berbasis JWT token dengan hash password aman (PBKDF2 SHA256).</li>
+            <li>📋 <strong>Manajemen Data Karyawan (CRUD)</strong>: Kode Karyawan (Unique Code), Nama Lengkap, Tanggal Lahir, Alamat, Nomor Telepon, Divisi, dan <strong>Supervisor / Atasan (Lookup Dropdown dinamis)</strong>.</li>
+            <li>🔍 <strong>Pencarian &amp; Multi-Filtering</strong>: Instant Search (Kode, Nama, Telepon), Filter berdasarkan Divisi, Filter berdasarkan Supervisor, dan Reset Filter 1-Klik.</li>
+            <li>📊 <strong>Ekspor Data Spreadsheet</strong>: Unduh data karyawan yang sedang difilter langsung ke file <strong>Excel (.xlsx)</strong> atau <strong>CSV (.csv)</strong>.</li>
+            <li>🎨 <strong>Modern Glassmorphism UI</strong>: Antarmuka responsif dengan tema Dark Slate, badge warna divisi, dialog modal interaktif, dan toast notification feedback.</li>
+          </ul>
+
+          <h3>🛠️ Teknologi yang Digunakan</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <h4 style="color: #38bdf8; margin-top: 0;">Backend</h4>
+              <ul style="padding-left: 1.2rem; margin-bottom: 0;">
+                <li><strong>Bahasa</strong>: Python 3.10+</li>
+                <li><strong>Framework</strong>: FastAPI</li>
+                <li><strong>Database</strong>: SQLite3 (SQLAlchemy ORM)</li>
+                <li><strong>Otentikasi</strong>: PyJWT, <code>hashlib</code> PBKDF2</li>
+                <li><strong>Data Export</strong>: <code>pandas</code>, <code>openpyxl</code></li>
+              </ul>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <h4 style="color: #818cf8; margin-top: 0;">Frontend</h4>
+              <ul style="padding-left: 1.2rem; margin-bottom: 0;">
+                <li><strong>Framework</strong>: ReactJS (Vite)</li>
+                <li><strong>Styling</strong>: Modern Vanilla CSS (Design Tokens &amp; Glassmorphism)</li>
+                <li><strong>HTTP Client</strong>: Axios (dengan Interceptor JWT Bearer Token)</li>
+                <li><strong>Icons</strong>: Lucide React</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 1.5rem;">🔑 Kredensial Login Default</h3>
+          <p>Saat pertama kali backend dijalankan, database SQLite akan otomatis menginisialisasi akun admin default:</p>
+          <div style="background: #0f172a; padding: 12px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); font-family: monospace;">
+            <strong>Username</strong>: <code>admin</code> &nbsp;|&nbsp; <strong>Password</strong>: <code>admin123</code>
+          </div>
+
+          <h3 style="margin-top: 1.5rem;">🚀 Langkah-Langkah Menjalankan Proyek</h3>
+          <pre><code># 1. Clone Repository
+git clone https://github.com/sonnyariady/fastapi-react-employee-crud.git
+cd DataKaryawan
+
+# 2. Menjalankan Backend (Python FastAPI)
+cd backend
+python -m venv venv
+.\venv\Scripts\Activate.ps1   # (Windows PowerShell)
+pip install -r requirements.txt
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+
+# Backend Server: http://127.0.0.1:8000
+# Swagger API Docs: http://127.0.0.1:8000/docs
+
+# 3. Menjalankan Frontend (ReactJS)
+# (Di terminal baru)
+cd frontend
+npm install
+npm run dev
+
+# Frontend Server: http://127.0.0.1:5173</code></pre>
+        </div>
+
+        <div class="lang-en">
+          <!-- Vibe Coding Callout Box (EN) -->
+          <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%); border: 1px solid rgba(99, 102, 241, 0.4); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+            <h3 style="color: #c084fc; margin-top: 0; display: flex; align-items: center; gap: 8px;">
+              🚀 Vibe Coding &amp; AI-Assisted Learning Blueprint
+            </h3>
+            <p style="color: #f1f5f9; font-size: 1rem; line-height: 1.7; margin-bottom: 0.8rem;">
+              This application is a product of <strong>Vibe Coding and AI-assisted development</strong>, built as an initial hands-on full-stack CRUD learning project (Python FastAPI + ReactJS).
+            </p>
+            <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">
+              💡 <em>It serves as a foundational learning blueprint that will be expanded and developed further for future application projects using a similar rapid AI-driven workflow.</em>
+            </p>
+          </div>
+
+          <p>
+            A modern Full-Stack Web Application for <strong>Employee Data Management</strong> equipped with JWT Authentication, full CRUD operations, dynamic Supervisor lookup, multi-criteria search &amp; filtering, and Data Export features to <strong>Excel (.xlsx)</strong> and <strong>CSV (.csv)</strong> formats.
+          </p>
+
+          <h3>✨ Key Features</h3>
+          <ul style="line-height: 1.8; color: #cbd5e1; padding-left: 1.2rem;">
+            <li>🔒 <strong>JWT Authentication &amp; Security</strong>: Secure JWT token-based login with hashed passwords (PBKDF2 SHA256).</li>
+            <li>📋 <strong>Employee Data Management (CRUD)</strong>: Unique Employee Code, Full Name, Birth Date, Address, Phone Number, Division, and <strong>Supervisor / Manager (Dynamic Lookup Dropdown)</strong>.</li>
+            <li>🔍 <strong>Search &amp; Multi-Filtering</strong>: Instant Search (Code, Name, Phone), Division-based Filter, Supervisor-based Filter, and 1-Click Filter Reset.</li>
+            <li>📊 <strong>Spreadsheet Data Export</strong>: Export currently filtered employee data directly to <strong>Excel (.xlsx)</strong> or <strong>CSV (.csv)</strong> files.</li>
+            <li>🎨 <strong>Modern Glassmorphism UI</strong>: Responsive Dark Slate interface with color-coded division badges, interactive modal dialogs, and toast notifications.</li>
+          </ul>
+
+          <h3>🛠️ Tech Stack</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <h4 style="color: #38bdf8; margin-top: 0;">Backend</h4>
+              <ul style="padding-left: 1.2rem; margin-bottom: 0;">
+                <li><strong>Language</strong>: Python 3.10+</li>
+                <li><strong>Framework</strong>: FastAPI</li>
+                <li><strong>Database</strong>: SQLite3 (SQLAlchemy ORM)</li>
+                <li><strong>Authentication</strong>: PyJWT, <code>hashlib</code> PBKDF2</li>
+                <li><strong>Data Export</strong>: <code>pandas</code>, <code>openpyxl</code></li>
+              </ul>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <h4 style="color: #818cf8; margin-top: 0;">Frontend</h4>
+              <ul style="padding-left: 1.2rem; margin-bottom: 0;">
+                <li><strong>Framework</strong>: ReactJS (Vite)</li>
+                <li><strong>Styling</strong>: Modern Vanilla CSS (Design Tokens &amp; Glassmorphism)</li>
+                <li><strong>HTTP Client</strong>: Axios (with JWT Bearer Token Interceptor)</li>
+                <li><strong>Icons</strong>: Lucide React</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 1.5rem;">🔑 Default Login Credentials</h3>
+          <p>When the backend runs for the first time, the SQLite database automatically initializes a default admin account:</p>
+          <div style="background: #0f172a; padding: 12px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); font-family: monospace;">
+            <strong>Username</strong>: <code>admin</code> &nbsp;|&nbsp; <strong>Password</strong>: <code>admin123</code>
+          </div>
+
+          <h3 style="margin-top: 1.5rem;">🚀 How to Run the Project</h3>
+          <pre><code># 1. Clone Repository
+git clone https://github.com/sonnyariady/fastapi-react-employee-crud.git
+cd DataKaryawan
+
+# 2. Running the Backend (Python FastAPI)
+cd backend
+python -m venv venv
+.\venv\Scripts\Activate.ps1   # (Windows PowerShell)
+pip install -r requirements.txt
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+
+# Backend Server: http://127.0.0.1:8000
+# Swagger API Docs: http://127.0.0.1:8000/docs
+
+# 3. Running the Frontend (ReactJS)
+# (In a new terminal)
+cd frontend
+npm install
+npm run dev
+
+# Frontend Server: http://127.0.0.1:5173</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TECHNICAL SPECIFICATION BLUEPRINT -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">📐 SECTION 2: Spesifikasi Arsitektur Teknis Agnostik (BLUEPRINT)</span>
+        <span class="lang-en">📐 SECTION 2: Technical Specification &amp; Tech-Agnostic Blueprint</span>
+      </h2>
+
+      <div class="showcase-card">
+        <div class="lang-id">
+          <p>
+            Dokumen ini merupakan <strong>Spesifikasi Teknis Agnostik (Language-Agnostic Blueprint)</strong>. Dokumen ini dirancang sebagai acuan standar arsitektur, skema basis data, REST API contract, dan aturan bisnis agar sistem ini dapat diimplementasikan ulang secara konsisten ke berbagai pilihan tech stack atau bahasa pemrograman lain (seperti <strong>.NET C# Blazor / ASP.NET Core</strong>, <strong>Laravel / Vue.js</strong>, <strong>Spring Boot / Angular</strong>, <strong>Go / Next.js</strong>, <strong>NestJS</strong>, dll).
+          </p>
+        </div>
+
+        <div class="lang-en">
+          <p>
+            This document is a <strong>Language-Agnostic Technical Specification &amp; Blueprint</strong>. It serves as a standard architectural reference, database schema, REST API contract, and business rules guide so that this system can be consistently re-implemented across various technology stacks or programming languages (such as <strong>.NET C# Blazor / ASP.NET Core</strong>, <strong>Laravel / Vue.js</strong>, <strong>Spring Boot / Angular</strong>, <strong>Go / Next.js</strong>, <strong>NestJS</strong>, etc.).
+          </p>
+        </div>
+
+        <h3>1. Skema Data &amp; Entity Relationship (ERD)</h3>
+        
+        <h4 style="color: #38bdf8; margin-top: 1rem;">1.1 Entitas <code>users</code> (Otentikasi &amp; Pengguna Sistem)</h4>
+        <table class="blueprint-table">
+          <thead>
+            <tr>
+              <th>Column Name</th>
+              <th>Data Type</th>
+              <th>Constraints</th>
+              <th>Description (ID)</th>
+              <th>Description (EN)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>Integer / BIGINT</td>
+              <td>Primary Key, Auto Increment</td>
+              <td>Identifier unik user</td>
+              <td>Unique user identifier</td>
+            </tr>
+            <tr>
+              <td><code>username</code></td>
+              <td>String (50)</td>
+              <td>Unique, Not Null, Index</td>
+              <td>Username untuk login</td>
+              <td>Username for login</td>
+            </tr>
+            <tr>
+              <td><code>email</code></td>
+              <td>String (100)</td>
+              <td>Nullable</td>
+              <td>Email pengguna</td>
+              <td>User email address</td>
+            </tr>
+            <tr>
+              <td><code>password_hash</code></td>
+              <td>String (255)</td>
+              <td>Not Null</td>
+              <td>Password yang di-hash (PBKDF2/BCrypt)</td>
+              <td>Hashed password</td>
+            </tr>
+            <tr>
+              <td><code>full_name</code></td>
+              <td>String (100)</td>
+              <td>Nullable</td>
+              <td>Nama lengkap pengguna</td>
+              <td>User full name</td>
+            </tr>
+            <tr>
+              <td><code>role</code></td>
+              <td>String (20)</td>
+              <td>Default: <code>'admin'</code></td>
+              <td>Peran akses (<code>admin</code>, <code>manager</code>, <code>hr</code>)</td>
+              <td>Access role</td>
+            </tr>
+            <tr>
+              <td><code>created_at</code></td>
+              <td>Timestamp</td>
+              <td>Default: CURRENT_TIMESTAMP</td>
+              <td>Waktu pembuatan akun</td>
+              <td>Account creation timestamp</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 style="color: #38bdf8; margin-top: 1.5rem;">1.2 Entitas <code>employees</code> (Data Karyawan)</h4>
+        <table class="blueprint-table">
+          <thead>
+            <tr>
+              <th>Column Name</th>
+              <th>Data Type</th>
+              <th>Constraints</th>
+              <th>Description (ID)</th>
+              <th>Description (EN)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>Integer / BIGINT</td>
+              <td>Primary Key, Auto Increment</td>
+              <td>Identifier unik karyawan</td>
+              <td>Unique employee identifier</td>
+            </tr>
+            <tr>
+              <td><code>kode_karyawan</code></td>
+              <td>String (50)</td>
+              <td>Unique, Not Null, Index</td>
+              <td>Kode identitas karyawan (<code>EMP-001</code>)</td>
+              <td>Employee unique code</td>
+            </tr>
+            <tr>
+              <td><code>nama</code></td>
+              <td>String (150)</td>
+              <td>Not Null, Index</td>
+              <td>Nama lengkap karyawan</td>
+              <td>Employee full name</td>
+            </tr>
+            <tr>
+              <td><code>tgl_lahir</code></td>
+              <td>Date</td>
+              <td>Not Null</td>
+              <td>Tanggal lahir (<code>YYYY-MM-DD</code>)</td>
+              <td>Date of birth</td>
+            </tr>
+            <tr>
+              <td><code>alamat</code></td>
+              <td>Text / String(255)</td>
+              <td>Nullable</td>
+              <td>Alamat tempat tinggal</td>
+              <td>Home address</td>
+            </tr>
+            <tr>
+              <td><code>telepon</code></td>
+              <td>String (30)</td>
+              <td>Nullable</td>
+              <td>Nomor telepon / WhatsApp</td>
+              <td>Phone / WhatsApp number</td>
+            </tr>
+            <tr>
+              <td><code>divisi</code></td>
+              <td>String (100)</td>
+              <td>Not Null, Index</td>
+              <td>Nama divisi/departemen</td>
+              <td>Division / Department name</td>
+            </tr>
+            <tr>
+              <td><code>supervisor_id</code></td>
+              <td>Integer / BIGINT</td>
+              <td>Nullable, Foreign Key -&gt; <code>employees(id)</code></td>
+              <td>Self-referential FK ke supervisor</td>
+              <td>Self-referential FK to manager</td>
+            </tr>
+            <tr>
+              <td><code>created_at</code></td>
+              <td>Timestamp</td>
+              <td>Default: CURRENT_TIMESTAMP</td>
+              <td>Tanggal dibuat</td>
+              <td>Record creation date</td>
+            </tr>
+            <tr>
+              <td><code>updated_at</code></td>
+              <td>Timestamp</td>
+              <td>Default: CURRENT_TIMESTAMP</td>
+              <td>Tanggal pembaruan terakhir</td>
+              <td>Record last update date</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size: 0.9rem; color: var(--text-muted, #94a3b8); font-style: italic;">
+          * Relasi ERD: <code>employees.supervisor_id</code> memuat relasi Many-to-One opsional ke <code>employees.id</code> (Self-Referential Hierarchy).
+        </p>
+
+        <h3 style="margin-top: 2rem;">🌐 2. RESTful API Contracts Summary</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted, #94a3b8);">
+          Authorization Header: <code>Bearer &lt;JWT_TOKEN&gt;</code> (diperlukan untuk seluruh endpoint kecuali login)
+        </p>
+        <table class="blueprint-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Description / Deskripsi</th>
+              <th>Auth Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge-endpoint badge-post">POST</span></td>
+              <td><code>/api/auth/login</code></td>
+              <td>Login user &amp; get JWT token / Login user &amp; dapatkan token JWT</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td><span class="badge-endpoint badge-get">GET</span></td>
+              <td><code>/api/auth/me</code></td>
+              <td>Get active user profile / Dapatkan profil user aktif</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td><span class="badge-endpoint badge-get">GET</span></td>
+              <td><code>/api/divisions</code></td>
+              <td>List employee division options / List opsi divisi karyawan</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td><span class="badge-endpoint badge-get">GET</span></td>
+              <td><code>/api/employees/supervisors/lookup</code></td>
+              <td>List employees for supervisor dropdown / List karyawan untuk dropdown supervisor</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td><span class="badge-endpoint badge-get">GET</span></td>
+              <td><code>/api/employees</code></td>
+              <td>List employees (Multi-filter &amp; Pagination) / List karyawan (Multi-filter &amp; Pagination)</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td><span class="badge-endpoint badge-post">POST</span></td>
+              <td><code>/api/employees</code></td>
+              <td>Create new employee / Tambah karyawan baru</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td><span class="badge-endpoint badge-put">PUT</span></td>
+              <td><code>/api/employees/{id}</code></td>
+              <td>Update employee data / Update data karyawan</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td><span class="badge-endpoint badge-delete">DELETE</span></td>
+              <td><code>/api/employees/{id}</code></td>
+              <td>Delete employee data / Hapus data karyawan</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td><span class="badge-endpoint badge-get">GET</span></td>
+              <td><code>/api/employees/export/data</code></td>
+              <td>Download Excel (.xlsx) / CSV file / Download file Excel (.xlsx) / CSV</td>
+              <td>✅</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin-top: 2rem;">⚡ 3. Aturan Bisnis &amp; Validasi (Business Rules)</h3>
+        <table class="blueprint-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Bahasa Indonesia</th>
+              <th>English</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td><strong>Keunikan Kode Karyawan</strong>: <code>kode_karyawan</code> tidak boleh duplikat (Case-insensitive unique check).</td>
+              <td><strong>Unique Employee Code</strong>: <code>kode_karyawan</code> must be unique (Case-insensitive unique check).</td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td><strong>Validasi Self-Supervisor</strong>: Karyawan <strong>TIDAK BOLEH</strong> memilih dirinya sendiri sebagai <code>supervisor_id</code> (<code>supervisor_id != id</code>).</td>
+              <td><strong>Self-Supervisor Validation</strong>: Employee <strong>CANNOT</strong> select themselves as their <code>supervisor_id</code> (<code>supervisor_id != id</code>).</td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td><strong>Pembersihan Referensi Bawahan</strong>: Jika supervisor A dihapus, seluruh bawahan A diubah nilai <code>supervisor_id</code>-nya menjadi <code>NULL</code>.</td>
+              <td><strong>Subordinate Cascade Reset</strong>: If supervisor A is deleted, all subordinates of A must have their <code>supervisor_id</code> reset to <code>NULL</code>.</td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td><strong>Konsistensi Ekspor</strong>: File Excel / CSV <strong>WAJIB</strong> mengikuti kriteria filter pencarian user yang sedang aktif.</td>
+              <td><strong>Export Consistency</strong>: Generated Excel/CSV files <strong>MUST</strong> reflect active user search/filter criteria.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin-top: 2rem;">🎨 4. Layout &amp; Specs Diagram</h3>
+        <pre><code>+-----------------------------------------------------------------------+
+|  [Logo] Employee Data System / Data Karyawan [Admin User] [Logout]   |
++-----------------------------------------------------------------------+
+|                                                                       |
+|  +-----------------------------------------------------------------+  |
+|  | [Search Input...] [Select Divisi] [Select Supervisor] [Reset]   |  |
+|  |                                [Export Excel] [Export CSV] [+Add]|  |
+|  +-----------------------------------------------------------------+  |
+|                                                                       |
+|  +-----------------------------------------------------------------+  |
+|  | No | Kode    | Nama         | Tgl Lahir  | Divisi   | Supervisor | Action|
+|  |----+---------+--------------+------------+----------+------------+-------|
+|  | 1  | EMP-001 | Budi Santoso | 1985-04-12 | Tech     | Top Level  | [E][D]|
+|  | 2  | EMP-004 | Dewi Lestari | 1995-02-14 | Tech     | Budi (001) | [E][D]|
+|  +-----------------------------------------------------------------+  |
+|  | Page 1 of 1                             [&lt; Previous] [ Next &gt;]     |
+|  +-----------------------------------------------------------------+  |
++-----------------------------------------------------------------------+</code></pre>
+
+        <h3 style="margin-top: 2rem;">🛠️ 5. Tech Stack Implementation Matrix</h3>
+        <table class="blueprint-table">
+          <thead>
+            <tr>
+              <th>Fitur / Feature</th>
+              <th>Python (FastAPI)</th>
+              <th>.NET (C# Blazor / Web API)</th>
+              <th>PHP (Laravel)</th>
+              <th>Go (Gin / GORM)</th>
+              <th>Java (Spring Boot)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Framework</strong></td>
+              <td>FastAPI</td>
+              <td>ASP.NET Core Web API</td>
+              <td>Laravel 11</td>
+              <td>Gin Web Framework</td>
+              <td>Spring Boot 3</td>
+            </tr>
+            <tr>
+              <td><strong>ORM / DB</strong></td>
+              <td>SQLAlchemy + SQLite</td>
+              <td>Entity Framework Core</td>
+              <td>Eloquent ORM</td>
+              <td>GORM</td>
+              <td>Spring Data JPA</td>
+            </tr>
+            <tr>
+              <td><strong>JWT Library</strong></td>
+              <td>PyJWT</td>
+              <td>System.IdentityModel.Tokens.Jwt</td>
+              <td>Firebase/JWT / Sanctum</td>
+              <td>golang-jwt/jwt</td>
+              <td>jjwt / Spring Security</td>
+            </tr>
+            <tr>
+              <td><strong>Export Excel</strong></td>
+              <td>openpyxl / pandas</td>
+              <td>EPPlus / ClosedXML</td>
+              <td>Maatwebsite/Laravel-Excel</td>
+              <td>excelize</td>
+              <td>Apache POI</td>
+            </tr>
+            <tr>
+              <td><strong>Frontend UI</strong></td>
+              <td>ReactJS (Vite)</td>
+              <td>Blazor WebAssembly / Razor</td>
+              <td>Vue 3 / Inertia.js</td>
+              <td>React / Next.js</td>
+              <td>Angular / React</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3: USER MANUAL & OPERATIONS -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">📖 SECTION 3: Panduan Pengguna &amp; Operasi Sistem (USER MANUAL)</span>
+        <span class="lang-en">📖 SECTION 3: User Manual &amp; Step-by-Step Operations</span>
+      </h2>
+
+      <div class="showcase-card">
+        <div class="lang-id">
+          <p style="color: var(--text-muted, #94a3b8); margin-bottom: 1.5rem;">
+            Petunjuk penggunaan lengkap dari aplikasi Sistem Manajemen Data Karyawan.
+          </p>
+
+          <ol style="line-height: 2; padding-left: 1.2rem;">
+            <li>
+              <strong>Memulai &amp; Login</strong>: Buka <code>http://127.0.0.1:5173</code> di browser. Masukkan kredensial <code>admin</code> / <code>admin123</code> (atau klik kotak demo login) lalu tekan <strong>Masuk ke Sistem</strong>.
+            </li>
+            <li>
+              <strong>Dashboard Utama</strong>: Menampilkan Header, Toolbar Filter &amp; Aksi, Tabel Data Karyawan (Nomor, Kode, Nama, Tanggal Lahir, Telepon, Divisi, Supervisor, Aksi), serta Pagination bar.
+            </li>
+            <li>
+              <strong>Pencarian &amp; Multi-Filtering</strong>: Masukkan nama/kode/telepon di kotak pencarian instan, filter berdasarkan Divisi, filter berdasarkan Supervisor, atau tekan tombol <strong>Reset Filter</strong>.
+            </li>
+            <li>
+              <strong>Tambah Data Karyawan Baru</strong>: Klik tombol <strong>+ Tambah Karyawan</strong> di toolbar, isi Kode (unik), Nama, Tanggal Lahir, Telepon, Divisi, Supervisor (opsional), Alamat, lalu tekan <strong>Simpan Data</strong>.
+            </li>
+            <li>
+              <strong>Lihat Detail &amp; Edit Data</strong>: Klik ikon <strong>Mata</strong> untuk membuka dialog modal profil detail karyawan, atau klik ikon <strong>Pensil</strong> untuk mengubah data karyawan.
+            </li>
+            <li>
+              <strong>Hapus Data Karyawan</strong>: Klik ikon <strong>Hapus (Trash)</strong> pada baris karyawan. Jika karyawan tersebut merupakan supervisor bagi karyawan lain, relasi supervisor bawahan otomatis dilepas menjadi <code>Top Level</code>.
+            </li>
+            <li>
+              <strong>Ekspor Data ke Excel &amp; CSV</strong>: Klik tombol <strong>Export Excel</strong> atau <strong>Export CSV</strong>. File spreadsheet akan terunduh otomatis sesuai dengan data yang sedang aktif difilter.
+            </li>
+          </ol>
+        </div>
+
+        <div class="lang-en">
+          <p style="color: var(--text-muted, #94a3b8); margin-bottom: 1.5rem;">
+            Complete step-by-step user guide for operating the Employee Data Management System.
+          </p>
+
+          <ol style="line-height: 2; padding-left: 1.2rem;">
+            <li>
+              <strong>Getting Started &amp; Login</strong>: Open <code>http://127.0.0.1:5173</code> in your browser. Enter credentials <code>admin</code> / <code>admin123</code> (or click demo login box) then click <strong>Masuk ke Sistem</strong>.
+            </li>
+            <li>
+              <strong>Main Dashboard</strong>: Displays Header, Filter &amp; Action Toolbar, Employee Table (Index, Code, Name, Birth Date, Phone, Division, Supervisor, Actions), and Pagination bar.
+            </li>
+            <li>
+              <strong>Search &amp; Multi-Filtering</strong>: Type code/name/phone into search box, filter by Division dropdown, filter by Supervisor dropdown, or click <strong>Reset Filter</strong>.
+            </li>
+            <li>
+              <strong>Add New Employee</strong>: Click <strong>+ Tambah Karyawan</strong> button, fill Code (unique), Name, Birth Date, Phone, Division, Supervisor (optional), Address, then click <strong>Simpan Data</strong>.
+            </li>
+            <li>
+              <strong>View Details &amp; Edit Employee</strong>: Click <strong>Eye Icon</strong> to open profile detail modal, or click <strong>Pencil Icon</strong> to update employee details.
+            </li>
+            <li>
+              <strong>Delete Employee</strong>: Click <strong>Trash Icon</strong> on employee row. If the deleted employee is a manager, subordinates' supervisor fields will automatically reset to <code>Top Level</code>.
+            </li>
+            <li>
+              <strong>Data Export to Excel &amp; CSV</strong>: Click <strong>Export Excel</strong> or <strong>Export CSV</strong> button. Spreadsheet file will download automatically matching active filters.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div style="text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text-muted, #94a3b8); font-size: 0.9rem;">
+      <p style="margin-bottom: 0.5rem;">
+        &copy; 2026 Sonny Ariady &mdash; Senior .NET Developer &amp; Technical Consultant.
+      </p>
+      <p style="font-size: 0.85rem;">
+        <a href="index.html" style="color: #818cf8;">&larr; Back to Portfolio</a> &nbsp;|&nbsp; 
+        <a href="https://github.com/sonnyariady/fastapi-react-employee-crud" target="_blank" rel="noopener" style="color: #818cf8;">GitHub Repository</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Language Switcher JavaScript -->
+  <script>
+    function setLanguage(lang) {
+      if (lang === 'en') {
+        document.body.classList.add('lang-en-active');
+        document.getElementById('btn-lang-en').classList.add('active');
+        document.getElementById('btn-lang-id').classList.remove('active');
+      } else {
+        document.body.classList.remove('lang-en-active');
+        document.getElementById('btn-lang-id').classList.add('active');
+        document.getElementById('btn-lang-en').classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -293,9 +293,9 @@ html_local = """<!DOCTYPE html>
   <!-- FEATURED CASE STUDIES & PROJECTS (LATEST UPDATES) -->
   <div class="section-title">Featured Portfolio & Case Studies</div>
   <ul class="bullets">
-    <li><strong>Tukang Sayur Online (Web & Mobile):</strong> Real-time hyper-local vegetable commerce platform built with .NET 9, Blazor Server & MAUI Hybrid, MudBlazor 7.4.0, ASP.NET Core API, and PostgreSQL. Features geo-discovery, role-based access, and bilingual support.</li>
-    <li><strong>TukangRoti (Sonny Bakery POS):</strong> Fullstack bakery production, inventory, POS cashier, and order management system built with React 19, TypeScript, Vite, Node.js & Express, Prisma ORM, and PostgreSQL. Features setup wizard, thermal receipt printing, and real-time inventory.</li>
-    <li><strong>Monthly Expense Tracker & AI Data Pipeline:</strong> Fullstack expense management (React 18, FastAPI, SQLite) and automated C# .NET 9 + Antigravity AI ETL pipeline for SQL Server to PostgreSQL data migration.</li>
+    <li><strong>Tukang Sayur Online (Web & Mobile):</strong> Real-time hyper-local vegetable commerce platform built with .NET 9, Blazor Server & MAUI Hybrid, MudBlazor 7.4.0, ASP.NET Core API, and PostgreSQL (GitHub: github.com/sonnyariady/TukangSayurOnline).</li>
+    <li><strong>TukangRoti (Sonny Bakery POS):</strong> Fullstack bakery production, inventory, POS cashier, and order management system built with React 19, TypeScript, Vite, Node.js & Express, Prisma ORM, and PostgreSQL (GitHub: github.com/sonnyariady/TukangRoti).</li>
+    <li><strong>Monthly Expense Tracker & AI Data Pipeline:</strong> Fullstack expense management (React 18, FastAPI, SQLite, GitHub: github.com/sonnyariady/vibe-expense-tracker) and automated C# .NET 9 + Antigravity AI ETL pipeline for SQL Server to PostgreSQL data migration.</li>
   </ul>
 
   <!-- EARLIER EXPERIENCE -->
@@ -672,8 +672,9 @@ html_international = """<!DOCTYPE html>
   <!-- FEATURED PROJECTS & CASE STUDIES -->
   <div class="section-title">Featured Projects & Case Studies</div>
   <ul class="bullets">
-    <li><strong>Tukang Sayur Online (Web & Mobile):</strong> Cross-platform hyper-local e-commerce platform built with .NET 9, Blazor Server & MAUI Hybrid, MudBlazor 7.4.0, ASP.NET Core API, and PostgreSQL.</li>
-    <li><strong>TukangRoti (Sonny Bakery POS):</strong> Fullstack bakery POS cashier, inventory, and order management system built with React 19, TypeScript, Vite, Node.js & Express, Prisma ORM, and PostgreSQL.</li>
+    <li><strong>Tukang Sayur Online (Web & Mobile):</strong> Cross-platform hyper-local e-commerce platform built with .NET 9, Blazor Server & MAUI Hybrid, MudBlazor 7.4.0, ASP.NET Core API, and PostgreSQL (GitHub: github.com/sonnyariady/TukangSayurOnline).</li>
+    <li><strong>TukangRoti (Sonny Bakery POS):</strong> Fullstack bakery POS cashier, inventory, and order management system built with React 19, TypeScript, Vite, Node.js & Express, Prisma ORM, and PostgreSQL (GitHub: github.com/sonnyariady/TukangRoti).</li>
+    <li><strong>Monthly Expense Tracker:</strong> Fullstack household expense management built with React 18, FastAPI, SQLite, and AI-assisted development (GitHub: github.com/sonnyariady/vibe-expense-tracker).</li>
   </ul>
 
   <!-- EARLIER EXPERIENCE -->
