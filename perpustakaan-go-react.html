@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perpustakaan Go &amp; React Case Study | Sonny Ariady</title>
+  <meta name="description" content="Case Study: Full-Stack Library Lending Management System built with Go 1.25 REST API, React + Vite SPA, Neon Serverless PostgreSQL, GitHub Actions CI/CD, and Vercel Edge using Freebuff AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom Showcase Page Highlights */
+    .cyan-badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(6, 182, 212, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .gradient-cyan-text {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lang-switcher-container {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 4px;
+      margin-top: 1rem;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+    }
+    .lang-en { display: none; }
+    body.lang-en-active .lang-id { display: none !important; }
+    body.lang-en-active .lang-en { display: block !important; }
+    body.lang-en-active inline.lang-en,
+    body.lang-en-active span.lang-en { display: inline !important; }
+
+    /* Web Frame Showcase Cards */
+    .web-frame-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .web-frame-card:hover {
+      border-color: rgba(6, 182, 212, 0.5);
+      transform: translateY(-4px);
+    }
+    .web-frame-header {
+      background: rgba(15, 23, 42, 0.95);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .web-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .web-dot.red { background: #ef4444; }
+    .web-dot.yellow { background: #f59e0b; }
+    .web-dot.green { background: #10b981; }
+    .web-frame-title {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-left: 8px;
+      font-family: monospace;
+    }
+    .web-img-container {
+      cursor: zoom-in;
+      position: relative;
+      background: #0f172a;
+    }
+    .web-frame-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox-modal.active { display: flex; }
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 25px;
+      color: #fff;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Feature Grid Layout */
+    .feature-grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .feature-grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Code Block & Tech Table styling */
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: var(--bg-card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+    .tech-table th, .tech-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .tech-table th {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--accent-cyan);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tech-table td {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+    }
+
+    /* Social Share Box */
+    .linkedin-box {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      position: relative;
+    }
+    .btn-copy {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(6, 182, 212, 0.2);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: #38bdf8;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-copy:hover {
+      background: #06b6d4;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Sonny Ariady</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html" class="btn-back">&larr; Back to Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    
+    <!-- Hero Header -->
+    <header class="case-study-hero">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="cyan-badge">Case Study &bull; AI-Assisted Full-Stack Engineering &amp; DevOps</span>
+        </div>
+        <div class="lang-switcher-container">
+          <button class="lang-btn active" id="btn-id" onclick="setLanguage('id')">Bahasa Indonesia</button>
+          <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">English</button>
+        </div>
+      </div>
+
+      <h1 style="margin-top: 1rem;">
+        Perpustakaan &mdash; <span class="gradient-cyan-text">Go &amp; ReactJS Library Lending System</span>
+      </h1>
+      <p class="case-study-subtitle">
+        <span class="lang-id">Pengembangan End-to-End dengan Freebuff AI: Pembuatan Aplikasi REST Go, React SPA, Refaktorisasi Postgres Neon, dan Diagnosa Failure CI/CD Vercel.</span>
+        <span class="lang-en">End-to-End AI-Assisted Engineering: Go REST API, React SPA, Neon PostgreSQL Database Migration, and Vercel CI/CD Troubleshooting with Freebuff AI.</span>
+      </p>
+
+      <div class="tag-cloud" style="margin-bottom: 1.5rem;">
+        <span class="tag highlight" style="background: rgba(6, 182, 212, 0.2); color: #38bdf8; border-color: rgba(6, 182, 212, 0.4);">Freebuff (DeepSeek Flash)</span>
+        <span class="tag highlight" style="background: rgba(6, 182, 212, 0.2); color: #38bdf8; border-color: rgba(6, 182, 212, 0.4);">Go 1.25 REST API</span>
+        <span class="tag highlight">React + Vite SPA</span>
+        <span class="tag">PostgreSQL on Neon</span>
+        <span class="tag">GitHub Actions CI/CD</span>
+        <span class="tag highlight">Vercel Edge</span>
+        <span class="tag">Bilingual (ID/EN)</span>
+      </div>
+
+      <div class="case-study-experiment-box" style="border-left-color: #06b6d4;">
+        <h4 style="color: #38bdf8;">
+          <span class="lang-id">Eksperimen Vibecoding AI Co-Pilot</span>
+          <span class="lang-en">The AI Co-Pilot Experiment</span>
+        </h4>
+        <p class="lang-id">
+          Bisakah instruksi bahasa alami (Natural Language Prompting) dalam Bahasa Indonesia memandu AI coding agent autonomous <strong>Freebuff (DeepSeek)</strong> dari tahap <em>zero-code scaffolding</em>, refaktorisasi basis data relational ke Neon PostgreSQL serverless, hingga mendiagnosa error <code>--prebuilt</code> pada pipeline GitHub Actions sampai rilis ke Vercel production?
+        </p>
+        <p class="lang-en">
+          Can natural language prompts in Indonesian guide autonomous AI coding agent <strong>Freebuff (DeepSeek)</strong> through zero-code project scaffolding, serverless PostgreSQL data layer refactoring on Neon, and active CI/CD build script debugging to a stable production deployment on Vercel?
+        </p>
+      </div>
+
+      <!-- Quick Links Bar -->
+      <div style="display: flex; gap: 12px; margin-top: 1.5rem; flex-wrap: wrap;">
+        <a href="https://perpustakaan-go-react-js.vercel.app" target="_blank" rel="noopener" class="btn-cta" style="background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%); border: none;">
+          🌐 Live Demo Vercel &rarr;
+        </a>
+        <a href="https://github.com/sonnyariady/perpustakaan-goReactJs" target="_blank" rel="noopener" class="btn-secondary">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repository
+        </a>
+      </div>
+    </header>
+
+    <!-- Section 01: Executive Overview & Tech Stack -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">01. Ikhtisar Proyek &amp; Arsitektur Sistem</span>
+        <span class="lang-en">01. Executive Project Overview &amp; System Architecture</span>
+      </h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem;">
+        <span class="lang-id">Studi kasus ini mendokumentasikan pengembangan cepat dari nol, refaktorisasi basis data, dan otomatisasi deployment cloud untuk sistem peminjaman buku <strong>Perpustakaan</strong>. Berkelanjutan dipandu oleh <strong>Freebuff</strong>—coding assistant AI berbasis DeepSeek Flash—seluruh lifecycle sistem dirancang melalui interaksi prompt Bahasa Indonesia.</span>
+        <span class="lang-en">This case study documents the rapid end-to-end development, persistence refactoring, and automated cloud deployment of <strong>Perpustakaan</strong> (a modern Library Lending Management System). Guided by <strong>Freebuff</strong>—an emerging autonomous AI coding assistant powered by DeepSeek Flash—the project was developed interactively through natural language prompts in Bahasa Indonesia.</span>
+      </p>
+
+      <div class="about-card" style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">
+          <span class="lang-id">Tabel Arsitektur &amp; Teknologi</span>
+          <span class="lang-en">Architecture &amp; Tech Stack Specifications</span>
+        </h3>
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Technology / Tool</th>
+              <th>Specification &amp; Architectural Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AI Agent</strong></td>
+              <td>Freebuff (DeepSeek Flash)</td>
+              <td>Autonomous workspace setup, code generation, CI/CD workflow drafting, and deployment error debugging.</td>
+            </tr>
+            <tr>
+              <td><strong>Backend</strong></td>
+              <td>Golang (v1.25 standard library)</td>
+              <td>High-performance REST API routing without heavy third-party framework overhead, JSON / Postgres handlers.</td>
+            </tr>
+            <tr>
+              <td><strong>Frontend</strong></td>
+              <td>React + Vite SPA</td>
+              <td>Responsive single-page application dashboard with category filtering, modal forms, and real-time stock state.</td>
+            </tr>
+            <tr>
+              <td><strong>Database</strong></td>
+              <td>PostgreSQL on Neon DB</td>
+              <td>Serverless cloud PostgreSQL providing transactional integrity for catalog inventory, borrowers, and loans.</td>
+            </tr>
+            <tr>
+              <td><strong>CI/CD</strong></td>
+              <td>GitHub Actions (<code>ci.yml</code>)</td>
+              <td>Automated code analysis (<code>go vet</code>, unit tests), frontend production build, and Vercel edge deployment.</td>
+            </tr>
+            <tr>
+              <td><strong>Hosting</strong></td>
+              <td>Vercel Production Edge</td>
+              <td>Zero-configuration cloud edge deployment with server-side build execution.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 02: Step-by-Step Implementation Journey -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">02. Alur Pengembangan &amp; DevOps Guided by Freebuff AI</span>
+        <span class="lang-en">02. Step-by-Step AI Vibe Coding &amp; DevOps Journey</span>
+      </h2>
+
+      <div class="workflow-steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>
+            <span class="lang-id">1. Inisialisasi Prompt</span>
+            <span class="lang-en">1. Prompting &amp; Scaffolding</span>
+          </h4>
+          <p class="lang-id">Memasukkan prompt natural Bahasa Indonesia yang merinci kebutuhan kategori buku, pelacakan stok real-time, direktori peminjam, dan log transaksi pinjam/kembali.</p>
+          <p class="lang-en">Started with a simple prompt outlining requirements (categories, stock tracking, borrower directory, loan/return logs). Freebuff scaffolded pure Go stdlib REST backend + React SPA.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>
+            <span class="lang-id">2. Pengujian Localhost</span>
+            <span class="lang-en">2. Localhost Prototyping</span>
+          </h4>
+          <p class="lang-id">Validasi alur peminjaman buku lokal pada port 5173 dengan penyimpanan JSON awal untuk memverifikasi logika pemotongan stok otomatis.</p>
+          <p class="lang-en">Core library workflows were validated locally on <code>localhost:5173</code>, verifying real-time stock deduction and active loan tables with initial local JSON storage.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>
+            <span class="lang-id">3. Migrasi Database Neon</span>
+            <span class="lang-en">3. Neon PostgreSQL Refactoring</span>
+          </h4>
+          <p class="lang-id">Refaktorisasi layer data access dari file JSON lokal ke serverless PostgreSQL di Neon DB untuk mendukung konkurensi multi-user dan integritas transaksi ACID.</p>
+          <p class="lang-en">Refactored data access layer from local JSON files to PostgreSQL hosted on Neon for multi-user concurrency and persistent relational storage.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h4>
+            <span class="lang-id">4. Troubleshooting CI/CD</span>
+            <span class="lang-en">4. CI/CD &amp; Deployment Fix</span>
+          </h4>
+          <p class="lang-id">Menyelesaikan kendala flag build Vercel (<code>--prebuilt</code> mismatch). Prompt log error ke Freebuff untuk refaktorisasi eksekusi build server-side di Vercel.</p>
+          <p class="lang-en">Prompted Freebuff to fix Vercel deployment flags mismatch (<code>--prebuilt</code> error). Freebuff diagnosed and refactored script for server-side build execution.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 03: Feature Modules Showcase & Interactive Screenshots -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">03. Modul Fitur Utama &amp; Antarmuka Aplikasi</span>
+        <span class="lang-en">03. Core Feature Modules &amp; Screenshot Showcase</span>
+      </h2>
+
+      <!-- Module 1: AI Prompting & Localhost Prototyping -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 1rem;">
+          <span class="lang-id">1. Inisialisasi Project AI &amp; Prototyping Lokal</span>
+          <span class="lang-en">1. AI-Driven Scaffolding &amp; Localhost Validation</span>
+        </h3>
+        
+        <div class="feature-grid-2col">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 1: Freebuff AI Agent Workspace Prompting</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig1_freebuff_scaffolding.png')">
+              <img src="assets/perpustakaan/fig1_freebuff_scaffolding.png" alt="Freebuff AI Prompting Workspace" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 2: Localhost Loan &amp; Return Testing</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig2_localhost_testing.png')">
+              <img src="assets/perpustakaan/fig2_localhost_testing.png" alt="Localhost Logic Validation" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card" style="margin-top: 1.5rem;">
+          <p class="lang-id">
+            <strong>Prompt Awal Bahasa Indonesia:</strong> <em>"Buatkan aplikasi peminjaman buku, dimana ada jenisnya buku apa, judul apa, berapa yg dipinjam, ada stok tiap jenis. Misal buku olahraga ada tentang apa saja, buku kategori agama ada siapa saja, siapakah yg meminjam buku."</em> Freebuff mengenali lingkungan Go 1.25 dan Node 24, menyusun arsitektur REST Go stdlib, dan menyiapkan React + Vite SPA.
+          </p>
+          <p class="lang-en">
+            <strong>Initial Indonesian Prompt:</strong> Freebuff identified Go 1.25 and Node 24 in the environment, planned the REST API backend using pure Go stdlib, and initiated the React + Vite frontend workspace with local JSON data storage for rapid validation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 2: CI/CD & Troubleshooting -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 1rem;">
+          <span class="lang-id">2. Otomatisasi CI/CD GitHub Actions &amp; Troubleshooting Vercel</span>
+          <span class="lang-en">2. GitHub Actions CI/CD Pipeline &amp; Vercel Build Troubleshooting</span>
+        </h3>
+        
+        <div class="web-frame-card">
+          <div class="web-frame-header">
+            <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+            <span class="web-frame-title">Figure 3: GitHub Actions Pipeline Build &amp; Deploy Success</span>
+          </div>
+          <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig3_github_actions_pipeline.png')">
+            <img src="assets/perpustakaan/fig3_github_actions_pipeline.png" alt="GitHub Actions Pipeline Success" class="web-frame-img">
+          </div>
+        </div>
+
+        <div class="about-card" style="margin-top: 1.5rem;">
+          <p class="lang-id">
+            <strong>Solusi Diagnosa Log Error:</strong> Saat deployment awal gagal karena konflik flag Vercel (<code>--prebuilt</code> flag mismatch), pengembang memberikan log error ke Freebuff. AI mendiagnosa masalah dan memperbarui commit script <code>ci.yml</code> (<em>"Perbaiki deploy Vercel: build server-side, bukan --prebuilt #4"</em>) hingga seluruh job lulus: Go backend vet &amp; tests (32s), Frontend npm build (8s), dan Deploy to Vercel production (45s).
+          </p>
+          <p class="lang-en">
+            <strong>Log Error Diagnosis:</strong> During initial deployment attempts, the pipeline encountered build failures caused by Vercel prebuilt configuration conflicts. By prompting Freebuff with error logs, the agent diagnosed the issue and refactored the script to execute a <strong>server-side build directly on Vercel</strong> with 100% pass rate.
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 3: Production Release - Dashboard & Categories -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 1rem;">
+          <span class="lang-id">3. Dashboard Analitik &amp; Manajemen Kategori Buku</span>
+          <span class="lang-en">3. Analytics Dashboard &amp; Category Management</span>
+        </h3>
+        
+        <div class="feature-grid-2col">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 4: Live Analytics Dashboard</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig4_analytics_dashboard.png')">
+              <img src="assets/perpustakaan/fig4_analytics_dashboard.png" alt="Live Analytics Dashboard" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 5: Category Management Interface</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig5_category_management.png')">
+              <img src="assets/perpustakaan/fig5_category_management.png" alt="Category Management" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card" style="margin-top: 1.5rem;">
+          <p class="lang-id">
+            Dashboard meringkas metrik utama perpustakaan secara real-time: total kategori (6), jumlah judul buku (13), total stok barang (158), peminjam aktif (5), serta transaksi aktif (2). Fitur peringkat <em>Buku Paling Sering Dipinjam</em> memudahkan pemantauan buku populer.
+          </p>
+          <p class="lang-en">
+            The analytics dashboard summarizes key library metrics: total categories, total book titles, total stock inventory, active borrowers, active loan count, and most borrowed books leaderboard. Administrators can easily manage categories (Agama, Fiksi, Komik, Olahraga, Sains, Teknologi).
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 4: Book Catalog & Member Registration -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 1rem;">
+          <span class="lang-id">4. Katalog Buku &amp; Manajemen Peminjam (Members)</span>
+          <span class="lang-en">4. Book Catalog Management &amp; Member Registration</span>
+        </h3>
+        
+        <div class="feature-grid-2col">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 6: Book Creation Modal Dialog</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig6_book_creation_modal.png')">
+              <img src="assets/perpustakaan/fig6_book_creation_modal.png" alt="Book Creation Modal" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 7: Book Catalog Table with Stock Counter</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig7_book_catalog_table.png')">
+              <img src="assets/perpustakaan/fig7_book_catalog_table.png" alt="Book Catalog Table" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-grid-2col" style="margin-top: 1.5rem;">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 8: Member Registration Modal</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig8_member_registration_modal.png')">
+              <img src="assets/perpustakaan/fig8_member_registration_modal.png" alt="Member Registration Modal" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 9: Borrower Registry &amp; Instant Notification</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig9_borrower_registry.png')">
+              <img src="assets/perpustakaan/fig9_borrower_registry.png" alt="Borrower Registry Notification" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card" style="margin-top: 1.5rem;">
+          <p class="lang-id">
+            Administrator dapat menambahkan judul buku baru lengkap dengan dropdown kategori, nama penulis, deskripsi singkat, serta jumlah stok awal. Direktori peminjam dilengkapi modal pendaftaran anggota (Nama Lengkap, Email, No HP) dengan banner notifikasi konfirmasi instan.
+          </p>
+          <p class="lang-en">
+            Administrators manage book titles linked to categories and stock counters. The dedicated borrower registry allows registering library members with contact info and displays instant success feedback banners upon registration.
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 5: Lending & Return Transactions -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 1rem;">
+          <span class="lang-id">5. Transaksi Peminjaman &amp; Pengembalian Buku</span>
+          <span class="lang-en">5. Book Loan &amp; Return Transaction Tracking</span>
+        </h3>
+        
+        <div class="feature-grid-2col">
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 10: New Loan Form &amp; Dynamic Stock Balance</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig10_new_loan_form.png')">
+              <img src="assets/perpustakaan/fig10_new_loan_form.png" alt="New Loan Form" class="web-frame-img">
+            </div>
+          </div>
+
+          <div class="web-frame-card">
+            <div class="web-frame-header">
+              <span class="web-dot red"></span><span class="web-dot yellow"></span><span class="web-dot green"></span>
+              <span class="web-frame-title">Figure 11: Active Loan Table &amp; Returned History</span>
+            </div>
+            <div class="web-img-container" onclick="openLightbox('assets/perpustakaan/fig11_active_loan_tracking.png')">
+              <img src="assets/perpustakaan/fig11_active_loan_tracking.png" alt="Active Loan Tracking Table" class="web-frame-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card" style="margin-top: 1.5rem;">
+          <p class="lang-id">
+            Modul transaksi memvalidasi ketersediaan stok buku secara otomatis saat memilih buku, menetapkan tanggal jatuh tempo kembali, menyediakan tombol aksi pengembalian satu klik, serta mencatat riwayat pengembalian buku secara historis.
+          </p>
+          <p class="lang-en">
+            The transaction module enforces real-time stock validation, due-date assignment, one-click return actions, and historical record keeping for completed loans.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 04: Key Takeaways & Developer Insights -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">04. Poin Pembelajaran &amp; Wawasan Developer</span>
+        <span class="lang-en">04. Key Takeaways &amp; Developer Insights</span>
+      </h2>
+
+      <div class="workflow-steps-grid">
+        <div class="step-card">
+          <h4>End-to-End AI Assistance</h4>
+          <p>Freebuff mendukung seluruh siklus hidup pengembangan perangkat lunak—mulai dari ideasi, pembuatan kode backend/frontend, hingga refaktorisasi enkapsulasi database PostgreSQL.</p>
+        </div>
+
+        <div class="step-card">
+          <h4>Interactive CI/CD Debugging</h4>
+          <p>Ketika otomatisasi build di Vercel mengalami kegagalan flag <code>--prebuilt</code>, pengiriman log error balik ke Freebuff menghasilkan solusi script tepat tanpa perlu trial-and-error manual.</p>
+        </div>
+
+        <div class="step-card">
+          <h4>Lightweight Go Backend</h4>
+          <p>Standard library Go menyediakan HTTP REST routing berperforma tinggi tanpa overhead dependensi pihak ketiga, menghasilkan waktu eksekusi CI yang sangat cepat (32 detik).</p>
+        </div>
+
+        <div class="step-card">
+          <h4>Modern Cloud Scalability</h4>
+          <p>Arsitektur terdekopel mengombinasikan Neon PostgreSQL serverless dan hosting edge Vercel memberikan skala otomatis tanpa biaya pemeliharaan infrastruktur.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 05: Links & LinkedIn Share Card -->
+    <section style="margin-bottom: 4rem;">
+      <h2 class="section-title">
+        <span class="lang-id">05. Tautan Repositori &amp; Postingan LinkedIn</span>
+        <span class="lang-en">05. Repository Links &amp; LinkedIn Showcase Update</span>
+      </h2>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <a href="https://github.com/sonnyariady/perpustakaan-goReactJs" target="_blank" rel="noopener" class="btn-cta" style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color);">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          github.com/sonnyariady/perpustakaan-goReactJs
+        </a>
+        <a href="https://perpustakaan-go-react-js.vercel.app" target="_blank" rel="noopener" class="btn-cta" style="background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%); border: none;">
+          🌐 Demo Langsung di Vercel Edge
+        </a>
+      </div>
+
+      <div class="about-card">
+        <h4 style="color: var(--accent-cyan); margin-bottom: 0.8rem;">
+          <span class="lang-id">Postingan LinkedIn Rilis Proyek</span>
+          <span class="lang-en">LinkedIn Post Update</span>
+        </h4>
+        <div class="linkedin-box" id="linkedin-text">From Idea to Production with Freebuff AI: Building a Full-Stack Library System in Go &amp; React
+I recently experimented with Freebuff, an autonomous AI coding agent powered by DeepSeek, to build and deploy an end-to-end Library Lending Management System (Perpustakaan).
+Here is a quick look at the build journey and how Freebuff guided the process:
+🔹 1. Scaffolding &amp; Prototyping:
+Started with a simple natural language prompt outlining core requirements (book categories, real-time stock tracking, borrower directory, and loan/return logs). Freebuff scaffolded a clean Go 1.25 REST backend using pure standard library routing alongside a React + Vite SPA.
+🔹 2. Database Migration:
+Initially prototyped with local JSON storage for quick validation, then refactored the entire data access layer into serverless PostgreSQL hosted on Neon for persistent, ACID-compliant storage.
+🔹 3. AI-Guided CI/CD &amp; Troubleshooting:
+Prompted Freebuff step-by-step to generate a GitHub Actions workflow (ci.yml). When initial deployment failed due to Vercel build flag mismatches (--prebuilt), I fed the error logs back into Freebuff, which quickly diagnosed the issue and refactored the script for seamless server-side building.
+🔹 4. Live Production:
+Deployed seamlessly to Vercel with real-time dashboard analytics, category &amp; book catalog modals, member management, and loan/return transactions.
+📂 GitHub Repository:
+https://github.com/sonnyariady/perpustakaan-goReactJs
+🌐 Live Demo:
+https://perpustakaan-go-react-js.vercel.app
+💡 Key takeaway: AI coding tools like Freebuff are evolving beyond basic syntax generation—they are becoming genuine co-pilots for architectural refactoring, workflow generation, and active DevOps debugging.
+#Golang #ReactJS #PostgreSQL #NeonDB #Vercel #Freebuff #AICoding #GitHubActions #DevOps #WebDevelopment #SoftwareEngineering<button class="btn-copy" onclick="copyLinkedInText()">Copy Post</button></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox Modal Container -->
+  <div class="lightbox-modal" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Expanded Image" class="lightbox-content" id="lightbox-img">
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Sonny Ariady. Full-Stack Go &amp; React AI Case Study.</p>
+    </div>
+  </footer>
+
+  <script>
+    function setLanguage(lang) {
+      const btnId = document.getElementById('btn-id');
+      const btnEn = document.getElementById('btn-en');
+      if (lang === 'en') {
+        document.body.classList.add('lang-en-active');
+        btnEn.classList.add('active');
+        btnId.classList.remove('active');
+      } else {
+        document.body.classList.remove('lang-en-active');
+        btnId.classList.add('active');
+        btnEn.classList.remove('active');
+      }
+    }
+
+    function openLightbox(src) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      modal.classList.add('active');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox');
+      modal.classList.remove('active');
+    }
+
+    function copyLinkedInText() {
+      const text = document.getElementById('linkedin-text').innerText.replace('Copy Post', '').trim();
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Teks postingan LinkedIn berhasil disalin!');
+      });
+    }
+  </script>
+</body>
+</html>
